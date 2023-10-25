@@ -14,13 +14,13 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: NPM Install
-              run: |
-                  npm i
+              run: npm i
 
             - name: Unit tests
-              run: |
-                  npm run test:unit
+              run: npm run test:unit
+
+            - name: Install Playwright
+              run: npx playwright install
 
             - name: Integrations tests
-              run: |
-                  npm run test:integration
+              run: npm run test:integration
