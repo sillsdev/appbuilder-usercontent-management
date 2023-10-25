@@ -10,7 +10,7 @@ export async function POST({ request }) {
     });
 
     if (existingApp) {
-        // If the App exists, update it
+        // Update app if it already exists
         existingApp = await prisma.app.update({
             where: { id: existingApp.id },
             data: {
@@ -19,7 +19,7 @@ export async function POST({ request }) {
             },
         });
     } else {
-        // If the App doesn't exist, create a new App record
+        // Create app if it already exists
         existingApp = await prisma.app.create({
             data: {
                 appId: data.appId,
@@ -52,24 +52,22 @@ export async function POST({ request }) {
     // Iterate over the listings and insert or update them
     for (const listingData of data.listings) {
         const { lang, title, shortDescription, fullDescription } = listingData;
-
-        let existingListing = await prisma.listing.findUnique({
-            where: { id: existingApp.id },
+        let existingListing = await prisma.listing.findFirst({
+            where: { appId: existingApp.id, lang: lang },
         });
 
         if (existingListing) {
-            // If the Listing exists, update it
-            existingListing = await prisma.listing.update({
+            // Update listing if it already exists
+            await prisma.listing.update({
                 where: { id: existingListing.id },
                 data: {
-                    lang,
                     title,
                     shortDescription,
                     fullDescription,
                 },
             });
         } else {
-            // If the Listing doesn't exist, create a new Listing record
+            // Create a new listing if it does not exist
             await prisma.listing.create({
                 data: {
                     lang,
@@ -82,5 +80,5 @@ export async function POST({ request }) {
         }
     }
 
-    return new Response(null, { status: 201 });
+    return new Response(null, { status: 200 });
 }
