@@ -6,7 +6,7 @@ export async function POST({ request }) {
 
     // Check if the App exists in the database based on the appId
     let existingApp = await prisma.app.findUnique({
-        where: { appId: data.appId },
+        where: { appId: data.appId }
     });
 
     if (existingApp) {
@@ -15,8 +15,8 @@ export async function POST({ request }) {
             where: { id: existingApp.id },
             data: {
                 appIcon: data.appIcon,
-                googlePlayUrl: data.appIcon,
-            },
+                googlePlayUrl: data.appIcon
+            }
         });
     } else {
         // Create app if it already exists
@@ -24,18 +24,20 @@ export async function POST({ request }) {
             data: {
                 appId: data.appId,
                 appIcon: data.appIcon,
-                googlePlayUrl: data.googlePlayUrl,
-            },
+                googlePlayUrl: data.googlePlayUrl
+            }
         });
     }
 
     // Get all the existing Listings for this App
     const existingListings = await prisma.listing.findMany({
-        where: { appId: existingApp.id },
+        where: { appId: existingApp.id }
     });
 
     // Create a Set of lang values from the incoming JSON
-    const newLangs = new Set(data.listings.map((/** @type {{ lang: any; }} */ listing) => listing.lang));
+    const newLangs = new Set(
+        data.listings.map((/** @type {{ lang: any; }} */ listing) => listing.lang)
+    );
 
     // Filter the existing Listings to find the ones that are not present in the incoming JSON
     const listingsToDelete = existingListings.filter(
@@ -45,7 +47,7 @@ export async function POST({ request }) {
     // Delete the Listings that should be removed
     for (const listingToDelete of listingsToDelete) {
         await prisma.listing.delete({
-            where: { id: listingToDelete.id },
+            where: { id: listingToDelete.id }
         });
     }
 
@@ -53,7 +55,7 @@ export async function POST({ request }) {
     for (const listingData of data.listings) {
         const { lang, title, shortDescription, fullDescription } = listingData;
         let existingListing = await prisma.listing.findFirst({
-            where: { appId: existingApp.id, lang: lang },
+            where: { appId: existingApp.id, lang: lang }
         });
 
         if (existingListing) {
@@ -63,8 +65,8 @@ export async function POST({ request }) {
                 data: {
                     title,
                     shortDescription,
-                    fullDescription,
-                },
+                    fullDescription
+                }
             });
         } else {
             // Create a new listing if it does not exist
@@ -74,8 +76,8 @@ export async function POST({ request }) {
                     title,
                     shortDescription,
                     fullDescription,
-                    appId: existingApp.id,
-                },
+                    appId: existingApp.id
+                }
             });
         }
     }
