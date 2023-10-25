@@ -2,14 +2,12 @@
 import prisma from "$lib/prisma";
 import type { PageServerLoad } from './$types';
 
-// 1.
 export const load = (async ({ params: { id } }) => {
-    // 2.
+
     const app = await prisma.app.findUnique({
-        where: { id: Number(id) },
-        include: { listings: true },
+        where: { appId: String(id) },
+        include: { listings: true }
     });
 
-    // 3.
     return { app };
 }) satisfies PageServerLoad;

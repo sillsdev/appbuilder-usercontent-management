@@ -17,16 +17,16 @@ async function main() {
                 listings: {
                     create: [
                         {
-                            lang: a.listing[0].lang,
-                            title: a.listing[0].title,
-                            shortDescription: a.listing[0].shortDescription,
-                            fullDescription: a.listing[0].fullDescription,
+                            lang: a.listings[0].lang,
+                            title: a.listings[0].title,
+                            shortDescription: a.listings[0].shortDescription,
+                            fullDescription: a.listings[0].fullDescription,
                         },
                         {
-                            lang: a.listing[1].lang,
-                            title: a.listing[1].title,
-                            shortDescription: a.listing[1].shortDescription,
-                            fullDescription: a.listing[1].fullDescription,
+                            lang: a.listings[1].lang,
+                            title: a.listings[1].title,
+                            shortDescription: a.listings[1].shortDescription,
+                            fullDescription: a.listings[1].fullDescription,
                         }
                     ],
                 },

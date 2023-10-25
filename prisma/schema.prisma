@@ -12,7 +12,7 @@ datasource db {
 
 model App {
   id            Int       @id @default(autoincrement())
-  appId         String
+  appId         String    @unique
   appIcon       String
   googlePlayUrl String
   listings      Listing[]

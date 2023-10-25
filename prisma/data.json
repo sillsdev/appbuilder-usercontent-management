@@ -3,7 +3,7 @@
         "appId": "CE2679C5-1078-4820-814D-E0D0310A30D9",
         "appIcon": "https://app.scriptoria.io/api/products/CE2679C5-1078-4820-814D-E0D0310A30D9/files/published/app-icon.png",
         "googlePlayUrl": "https://play.google.com/store/apps/details?id=org.example.test",
-        "listing": [
+        "listings": [
             {
                 "lang": "en-US",
                 "title": "The App Name From Google Play",
