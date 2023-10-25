@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+    push:
+        branches: ['*']
+    pull_request:
+        branches: ['*']
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: NPM Install
+              run: |
+                  npm i
+
+            # - name: Add config
+            #   run: cp ".github/workflows/lint.env" .env
+
+            - name: TypeScript/Svelte Check
+              run: |
+                  npm list --depth=0 typescript
+                  npm run check
+
+            - name: ESLint
+              run: |
+                  npm list --depth=0 eslint eslint-plugin-import prettier
+                  npm run lint
