@@ -1,0 +1,26 @@
+name: Test
+
+on:
+    push:
+        branches: ['*']
+    pull_request:
+        branches: ['*']
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: NPM Install
+              run: npm i
+
+            - name: Unit tests
+              run: npm run test:unit
+
+            - name: Install Playwright
+              run: npx playwright install
+
+            - name: Integrations tests
+              run: npm run test:integration
