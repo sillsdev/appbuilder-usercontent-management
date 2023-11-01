@@ -1,4 +1,10 @@
 import nodemailer from 'nodemailer';
+import {
+    EMAIL_SERVER_ADDRESS,
+    EMAIL_SERVER_PORT,
+    EMAIL_SERVER_USERNAME,
+    EMAIL_SERVER_PASSWORD
+} from '$env/static/private';
 
 /* async function sendVerificationEmail(receiverEmail, verificationLink) {
     // create a transporter object using the default SMTP transport
@@ -24,15 +30,22 @@ import nodemailer from 'nodemailer';
 
   sendVerificationEmail("receiver@example.com", "https://www.google.com/?client=safari&channel=mac_bm"); */
 
-  const transporter = nodemailer.createTransport({
-    host: 'localhost',
-    port: 1025,
+//   const transporter = nodemailer.createTransport({
+//     host: 'localhost',
+//     port: 1025,
+//     auth: {
+//         user: 'project.1',
+//         pass: 'secret.1'
+//     }
+// });
+
+const transporter = nodemailer.createTransport({
+    host: EMAIL_SERVER_ADDRESS,
+    port: EMAIL_SERVER_PORT,
     auth: {
-        user: 'project.1',
-        pass: 'secret.1'
+        user: EMAIL_SERVER_USERNAME,
+        pass: EMAIL_SERVER_PASSWORD
     }
 });
 
-
 export default transporter;
-  
