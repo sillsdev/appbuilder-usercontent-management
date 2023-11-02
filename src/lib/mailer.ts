@@ -1,9 +1,10 @@
 import nodemailer from 'nodemailer';
+import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import {
-    EMAIL_SERVER_ADDRESS,
-    EMAIL_SERVER_PORT,
-    EMAIL_SERVER_USERNAME,
-    EMAIL_SERVER_PASSWORD
+    SMTP_SERVER_ADDRESS,
+    SMTP_SERVER_PORT,
+    SMTP_SERVER_USERNAME,
+    SMTP_SERVER_PASSWORD
 } from '$env/static/private';
 
 /* async function sendVerificationEmail(receiverEmail, verificationLink) {
@@ -39,13 +40,14 @@ import {
 //     }
 // });
 
-const transporter = nodemailer.createTransport({
-    host: EMAIL_SERVER_ADDRESS,
-    port: EMAIL_SERVER_PORT,
+const smtpConfig: SMTPTransport.Options = {
+    host: SMTP_SERVER_ADDRESS,
+    port: Number(SMTP_SERVER_PORT),
     auth: {
-        user: EMAIL_SERVER_USERNAME,
-        pass: EMAIL_SERVER_PASSWORD
+        user: SMTP_SERVER_USERNAME,
+        pass: SMTP_SERVER_PASSWORD
     }
-});
+};
+const transporter = nodemailer.createTransport(smtpConfig);
 
 export default transporter;

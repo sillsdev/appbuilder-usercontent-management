@@ -2,7 +2,7 @@
 import prisma from '$lib/prisma';
 import type { PageServerLoad } from './$types';
 import transporter from '$lib/mailer';
-import { PUBLIC_EMAIL_FROM } from '$env/static/public';
+import { EMAIL_FROM } from '$env/static/private';
 
 export const load = (async ({ params: { id } }) => {
     const app = await prisma.app.findUnique({
@@ -13,7 +13,7 @@ export const load = (async ({ params: { id } }) => {
     console.log('Emailing to Jae to verify link');
 
     transporter.sendMail({
-        from: PUBLIC_EMAIL_FROM, // sender address
+        from: EMAIL_FROM, // sender address
         to: 'sharonepatta@gmail.com', // list of receivers
         subject: 'Email Verification', // Subject line
         text: 'Click the link below to verify your email:', // plain text body

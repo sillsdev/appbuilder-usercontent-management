@@ -17,8 +17,8 @@ jobs:
               run: |
                   npm i
 
-            # - name: Add config
-            #   run: cp ".github/workflows/lint.env" .env
+            - name: Add config
+              run: cp ".github/workflows/lint.env" .env
 
             - name: TypeScript/Svelte Check
               run: |
