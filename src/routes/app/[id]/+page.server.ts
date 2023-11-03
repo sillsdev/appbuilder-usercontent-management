@@ -14,10 +14,10 @@ export const load = (async ({ params: { id } }) => {
 
     transporter.sendMail({
         from: EMAIL_FROM, // sender address
-        to: 'sharonepatta@gmail.com', // list of receivers
+        to: ['sharonepatta@gmail.com'], // list of receivers
         subject: 'Email Verification', // Subject line
         text: 'Click the link below to verify your email:', // plain text body
-        amp: `<!DOCTYPE html>
+        html: `<!DOCTYPE html>
         <html>
         <head>
             <title>Email Confirmation</title>
