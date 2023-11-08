@@ -14,7 +14,7 @@ export const load = (async ({ params: { id } }) => {
 
     transporter.sendMail({
         from: EMAIL_FROM, // sender address
-        to: ['sharonepatta@gmail.com'], // list of receivers
+        to: ['usercontenttest@gmail.com'], // list of receivers
         subject: 'Email Verification', // Subject line
         text: 'Click the link below to verify your email:', // plain text body
         html: `<!DOCTYPE html>
