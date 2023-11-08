@@ -23,9 +23,4 @@ jobs:
               run: npx playwright install
 
             - name: Integrations tests
-              run: |
-              export SMTP_SERVER_ADDRESS="mail.bluevire.com"
-              export SMTP_SERVER_PORT="465"
-              export SMTP_SERVER_USERNAME="noreply@bluevire.com"
-              export SMTP_SERVER_PASSWORD="V@830%r0i]Ux"
-              npm run test:integration
+              run: npm run test:integration
