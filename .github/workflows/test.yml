@@ -16,6 +16,9 @@ jobs:
             - name: NPM Install
               run: npm i
 
+            - name: Add config
+              run: cp ".github/workflows/example.env" .env
+
             - name: Unit tests
               run: npm run test:unit
 
@@ -23,10 +26,4 @@ jobs:
               run: npx playwright install
 
             - name: Integrations tests
-              run: |
-                  export EMAIL_FROM="noreply@example.com"
-                  export SMTP_SERVER_ADDRESS="mail.example.com"
-                  export SMTP_SERVER_PORT="465"
-                  export SMTP_SERVER_USERNAME="noreply@example.com"
-                  export SMTP_SERVER_PASSWORD="password"
-                  npm run test:integration
+              run: npm run test:integration
