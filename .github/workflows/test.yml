@@ -16,6 +16,9 @@ jobs:
             - name: NPM Install
               run: npm i
 
+            - name: Add config
+              run: cp ".github/workflows/example.env" .env
+
             - name: Unit tests
               run: npm run test:unit
 
