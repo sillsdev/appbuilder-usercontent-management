@@ -14,15 +14,15 @@ export const load = (async ({ params: { id } }) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-    default: async ({ request }: { request : any}) => {
+    default: async ({ request }: { request: any }) => {
         try {
             const formData = await request.formData();
-            const email = formData.get("to");
+            const email = formData.get('to');
             const message = {
                 from: EMAIL_FROM,
                 to: email,
-                subject: "Email Verification",
-                text: "Click the link below to verify your email:",
+                subject: 'Email Verification',
+                text: 'Click the link below to verify your email:',
                 html: `<!DOCTYPE html>
                 <html>
                 <head>
@@ -70,7 +70,7 @@ export const actions = {
 
             await sendEmail(message);
             return {
-                success: "Email is sent",
+                success: 'Email is sent'
             };
         } catch (error) {
             console.error(error);
