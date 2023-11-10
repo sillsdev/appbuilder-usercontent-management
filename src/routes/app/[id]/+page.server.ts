@@ -14,7 +14,7 @@ export const load = (async ({ params: { id } }) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-    default: async ({ request }) => {
+    default: async ({ request }: { request : any}) => {
         try {
             const formData = await request.formData();
             const email = formData.get("to");
