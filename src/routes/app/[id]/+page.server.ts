@@ -1,6 +1,6 @@
 // src/routes/p/[id]/+page.server.ts
 import prisma from '$lib/prisma';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, RequestEvent } from './$types';
 import transporter from '$lib/mailer';
 import { EMAIL_FROM } from '$env/static/private';
 import type { Options } from 'nodemailer/lib/mailer';
@@ -14,11 +14,11 @@ export const load = (async ({ params: { id } }) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-    default: async ({ request }: { request: any }) => {
+    default: async ({ request }: RequestEvent) => {
         try {
             const formData = await request.formData();
             const email = formData.get('to');
-            const message = {
+            const message: Options = {
                 from: EMAIL_FROM,
                 to: email,
                 subject: 'Email Verification',
@@ -55,20 +55,12 @@ export const actions = {
                 </html>`
             };
 
-            const sendEmail = async (message: Options) => {
-                await new Promise((resolve, reject) => {
-                    transporter.sendMail(message, (err, info) => {
-                        if (err) {
-                            console.error(err);
-                            reject(err);
-                        } else {
-                            resolve(info);
-                        }
-                    });
-                });
-            };
+            transporter.sendMail(message, (err, info) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
 
-            await sendEmail(message);
             return {
                 success: 'Email is sent'
             };
