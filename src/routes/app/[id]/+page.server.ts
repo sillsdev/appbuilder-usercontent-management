@@ -4,6 +4,7 @@ import type { PageServerLoad, RequestEvent } from './$types';
 import transporter from '$lib/mailer';
 import { EMAIL_FROM } from '$env/static/private';
 import type { Options } from 'nodemailer/lib/mailer';
+import { fail } from '@sveltejs/kit';
 
 export const load = (async ({ params: { id } }) => {
     const app = await prisma.app.findUnique({
@@ -18,12 +19,13 @@ export const actions = {
         try {
             const formData = await request.formData();
             const email = formData.get('to');
-            const message: Options = {
-                from: EMAIL_FROM,
-                to: email,
-                subject: 'Email Verification',
-                text: 'Click the link below to verify your email:',
-                html: `<!DOCTYPE html>
+            if (email !== null && typeof email === 'string') {
+                const message: Options = {
+                    from: EMAIL_FROM,
+                    to: email,
+                    subject: 'Email Verification',
+                    text: 'Click the link below to verify your email:',
+                    html: `<!DOCTYPE html>
                 <html>
                 <head>
                     <title>Email Confirmation</title>
@@ -53,19 +55,23 @@ export const actions = {
                 
                 </body>
                 </html>`
-            };
+                };
 
-            transporter.sendMail(message, (err, info) => {
-                if (err) {
-                    console.error(err);
-                }
-            });
+                transporter.sendMail(message, (err, info) => {
+                    if (err) {
+                        console.error(err);
+                        return { success: false };
+                    }
+                });
 
-            return {
-                success: 'Email is sent'
-            };
+                return {
+                    success: 'Email is sent'
+                };
+            } else {
+                return fail(400);
+            }
         } catch (error) {
-            console.error(error);
+            return fail(400);
         }
     }
 };
