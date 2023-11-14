@@ -57,7 +57,7 @@ export const actions = {
                 </html>`
                 };
 
-                transporter.sendMail(message, (err, info) => {
+                transporter.sendMail(message, (err) => {
                     if (err) {
                         console.error(err);
                         return { success: false };
