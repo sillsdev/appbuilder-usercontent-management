@@ -19,7 +19,7 @@ export const actions = {
         try {
             const formData = await request.formData();
             const email = formData.get('to');
-            if (email !== null && typeof email === 'string') {
+            if (email !== '' && typeof email === 'string') {
                 const message: Options = {
                     from: EMAIL_FROM,
                     to: email,
@@ -71,7 +71,7 @@ export const actions = {
                 return fail(400);
             }
         } catch (error) {
-            return fail(400);
+            return fail(500);
         }
     }
 };
