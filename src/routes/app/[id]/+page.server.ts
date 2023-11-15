@@ -68,7 +68,7 @@ export const actions = {
                     success: 'Email is sent'
                 };
             } else {
-                return fail(400);
+                return fail(500);
             }
         } catch (error) {
             return fail(500);
