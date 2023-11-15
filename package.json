@@ -39,6 +39,9 @@
     },
     "type": "module",
     "prisma": {
-        "seed": "ts-node --esm prisma/seed.ts"
+        "seed": "ts-node prisma/seed.js"
+    },
+    "volta": {
+        "node": "20.9.0"
     }
 }
