@@ -45,5 +45,8 @@ jobs:
             - name: Install Playwright
               run: npx playwright install
 
+            - name: Install Playwright Dependencies
+              run: npx playwright install-deps
+
             - name: Integrations tests
               run: npm run test:integration
