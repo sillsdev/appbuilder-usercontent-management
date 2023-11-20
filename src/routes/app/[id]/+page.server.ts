@@ -20,12 +20,31 @@ export const load = (async ({ params: { id } }) => {
 }) satisfies PageServerLoad;
 
 export const actions = {
-    default: async ({ request }: RequestEvent) => {
+    default: async ({ request, params }: RequestEvent) => {
+        const app = await prisma.app.findUnique({
+            where: { appId: String(params.id) }
+        });
+        if (app === null) {
+            return fail(404);
+        }
         try {
             const formData = await request.formData();
             const email = formData.get('to');
+
             if (email !== '' && typeof email === 'string') {
                 const confirmationCode = generateConfirmationCode();
+
+                // Create a UserManagementRequest object
+                /*const userManagementRequest = */ await prisma.userManagementRequest.create({
+                    data: {
+                        email: email,
+                        confirmationCode: confirmationCode,
+                        dateExpires: new Date(Date.now() + 60 * 60 * 1000),
+                        app: {
+                            connect: { id: app.id }
+                        }
+                    }
+                });
 
                 const message: Options = {
                     from: EMAIL_FROM,
@@ -42,7 +61,7 @@ export const actions = {
                     <div style="max-width: 600px; margin: auto; padding: 20px;">
                         <h1 style="font-size: 48px; color: #0077b6;">Verification</h1>
                 
-                        <p style="font-size: 24px;">Hello [email address],</p>
+                        <p style="font-size: 24px;">Hello ${email},</p>
                 
                         <p style="line-height: 2;">
                             Thanks for typing in your email! 
@@ -50,7 +69,7 @@ export const actions = {
                         </p>
                 
                         <p>
-                            This verification code will expire in 24 hours. -From Team SIL
+                            This verification code will expire in 1 hour. -From Team SIL
                         </p>
                     </div>
                 
