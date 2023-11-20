@@ -11,12 +11,12 @@ datasource db {
 }
 
 model App {
-  id            Int       @id @default(autoincrement())
-  appId         String    @unique
+  id            Int                     @id @default(autoincrement())
+  appId         String                  @unique
   appIcon       String
   googlePlayUrl String
   listings      Listing[]
-  requests      Request[]
+  requests      UserManagementRequest[]
 }
 
 model Listing {
@@ -29,7 +29,7 @@ model Listing {
   appId            Int
 }
 
-model Request {
+model UserManagementRequest {
   id               String   @id @default(uuid())
   email            String
   confirmationCode String
