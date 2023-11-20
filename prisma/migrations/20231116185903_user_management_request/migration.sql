@@ -5,10 +5,10 @@ CREATE TABLE "UserManagementRequest" (
     "confirmationCode" TEXT NOT NULL,
     "dateExpires" TIMESTAMP(3) NOT NULL,
     "appId" INTEGER NOT NULL,
-    "changeRequest" TEXT NOT NULL,
+    "changeRequest" TEXT,
     "dateCreated" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "dateCompleted" TIMESTAMP(3) NOT NULL,
-    "dateConfirmed" TIMESTAMP(3) NOT NULL,
+    "dateCompleted" TIMESTAMP(3),
+    "dateConfirmed" TIMESTAMP(3),
 
     CONSTRAINT "UserManagementRequest_pkey" PRIMARY KEY ("id")
 );
