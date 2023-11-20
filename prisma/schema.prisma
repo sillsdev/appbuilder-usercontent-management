@@ -30,14 +30,14 @@ model Listing {
 }
 
 model UserManagementRequest {
-  id               String   @id @default(uuid())
+  id               String    @id @default(uuid())
   email            String
   confirmationCode String
   dateExpires      DateTime
-  app              App      @relation(fields: [appId], references: [id])
+  app              App       @relation(fields: [appId], references: [id])
   appId            Int
-  changeRequest    String
-  dateCreated      DateTime @default(now())
-  dateCompleted    DateTime
-  dateConfirmed    DateTime
+  changeRequest    String?
+  dateCreated      DateTime  @default(now())
+  dateCompleted    DateTime?
+  dateConfirmed    DateTime?
 }
