@@ -6,11 +6,6 @@ import { EMAIL_FROM } from '$env/static/private';
 import type { Options } from 'nodemailer/lib/mailer';
 import { fail } from '@sveltejs/kit';
 
-// Function to generate a six-digit confirmation code
-function generateConfirmationCode() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
 export const load = (async ({ params: { id } }) => {
     const app = await prisma.app.findUnique({
         where: { appId: String(id) },
@@ -25,13 +20,11 @@ export const actions = {
             const formData = await request.formData();
             const email = formData.get('to');
             if (email !== '' && typeof email === 'string') {
-                const confirmationCode = generateConfirmationCode();
-
                 const message: Options = {
                     from: EMAIL_FROM,
                     to: email,
                     subject: 'Email Verification',
-                    text: `Your verification code is: ${confirmationCode}`,
+                    text: 'Click the link below to verify your email:',
                     html: `<!DOCTYPE html>
                 <html>
                 <head>
@@ -46,11 +39,17 @@ export const actions = {
                 
                         <p style="line-height: 2;">
                             Thanks for typing in your email! 
-                            <br /> Your verification code is: ${confirmationCode}
+                
+                         <br /> Click the link below to confirm your email address:
                         </p>
                 
+                        <a href="#" style="background-color: #0077b6; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 20px 0; cursor: pointer; border-radius: 4px;">
+                            Verify Now
+                        </a>
+                
+                
                         <p>
-                            This verification code will expire in 24 hours. -From Team SIL
+                            This verification link will expire in 24 hours. -From Team SIL
                         </p>
                     </div>
                 
