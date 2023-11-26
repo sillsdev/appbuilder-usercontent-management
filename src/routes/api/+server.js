@@ -6,7 +6,7 @@ export async function POST({ request }) {
 
     // Check if the App exists in the database based on the appId
     let existingApp = await prisma.app.findUnique({
-        where: { appId: data.appId }
+        where: { appId: data[0].appId }
     });
 
     if (existingApp) {
@@ -14,17 +14,17 @@ export async function POST({ request }) {
         existingApp = await prisma.app.update({
             where: { id: existingApp.id },
             data: {
-                appIcon: data.appIcon,
-                googlePlayUrl: data.appIcon
+                appIcon: data[0].appIcon,
+                googlePlayUrl: data[0].googlePlayUrl
             }
         });
     } else {
         // Create app if it already exists
         existingApp = await prisma.app.create({
             data: {
-                appId: data.appId,
-                appIcon: data.appIcon,
-                googlePlayUrl: data.googlePlayUrl
+                appId: data[0].appId,
+                appIcon: data[0].appIcon,
+                googlePlayUrl: data[0].googlePlayUrl
             }
         });
     }
@@ -36,7 +36,7 @@ export async function POST({ request }) {
 
     // Create a Set of lang values from the incoming JSON
     const newLangs = new Set(
-        data.listings.map((/** @type {{ lang: any; }} */ listing) => listing.lang)
+        data[0].listings.map((/** @type {{ lang: any; }} */ listing) => listing.lang)
     );
 
     // Filter the existing Listings to find the ones that are not present in the incoming JSON
@@ -52,7 +52,7 @@ export async function POST({ request }) {
     }
 
     // Iterate over the listings and insert or update them
-    for (const listingData of data.listings) {
+    for (const listingData of data[0].listings) {
         const { lang, title, shortDescription, fullDescription } = listingData;
         let existingListing = await prisma.listing.findFirst({
             where: { appId: existingApp.id, lang: lang }
