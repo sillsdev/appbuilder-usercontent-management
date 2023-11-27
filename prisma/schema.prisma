@@ -11,11 +11,12 @@ datasource db {
 }
 
 model App {
-  id            Int       @id @default(autoincrement())
-  appId         String    @unique
+  id            Int                     @id @default(autoincrement())
+  appId         String                  @unique
   appIcon       String
   googlePlayUrl String
   listings      Listing[]
+  requests      UserManagementRequest[]
 }
 
 model Listing {
@@ -26,4 +27,17 @@ model Listing {
   fullDescription  String
   app              App    @relation(fields: [appId], references: [id])
   appId            Int
+}
+
+model UserManagementRequest {
+  id               String    @id @default(uuid())
+  email            String
+  confirmationCode String
+  dateExpires      DateTime
+  app              App       @relation(fields: [appId], references: [id])
+  appId            Int
+  changeRequest    String?
+  dateCreated      DateTime  @default(now())
+  dateCompleted    DateTime?
+  dateConfirmed    DateTime?
 }
