@@ -13,11 +13,11 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: NPM Install
-              run: npm i
-
             - name: Add config
               run: cp ".github/workflows/example.env" .env
+
+            - name: NPM Install
+              run: npm i
 
             - name: Unit tests
               run: npm run test:unit

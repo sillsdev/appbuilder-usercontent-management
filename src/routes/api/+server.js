@@ -15,7 +15,7 @@ export async function POST({ request }) {
             where: { id: existingApp.id },
             data: {
                 appIcon: data.appIcon,
-                googlePlayUrl: data.appIcon
+                googlePlayUrl: data.googlePlayUrl
             }
         });
     } else {
