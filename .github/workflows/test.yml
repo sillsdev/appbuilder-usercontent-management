@@ -9,6 +9,20 @@ on:
 jobs:
     test:
         runs-on: ubuntu-latest
+        container: node:20-bookworm
+
+        services:
+            postgres:
+                image: postgres:15
+                env:
+                    POSTGRES_DB: test
+                    POSTGRES_USER: db-user
+                    POSTGRES_PASSWORD: 1234
+                options: >-
+                    --health-cmd pg_isready
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
 
         steps:
             - uses: actions/checkout@v4
@@ -19,11 +33,24 @@ jobs:
             - name: Add config
               run: cp ".github/workflows/example.env" .env
 
+            - name: Generate artifacts
+              run: npx prisma generate
+
+            - name: Run migrations
+              run: npx prisma migrate deploy
+
             - name: Unit tests
               run: npm run test:unit
 
             - name: Install Playwright
-              run: npx playwright install
+              run: npx playwright install --with-deps
 
             - name: Integrations tests
               run: npm run test:integration
+
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 30
