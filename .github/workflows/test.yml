@@ -16,9 +16,6 @@ jobs:
             - name: Add config
               run: cp ".github/workflows/example.env" .env
 
-            - name: Start database
-              run: docker-compose up -d
-
             - name: NPM Install
               run: npm i
 
