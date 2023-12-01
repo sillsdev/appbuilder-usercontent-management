@@ -27,7 +27,7 @@ export const actions = {
         if (app === null) {
             return fail(404);
         }
-        let verifyId = "";
+        let verifyId = '';
         try {
             const formData = await request.formData();
             const email = formData.get('to');
@@ -92,6 +92,6 @@ export const actions = {
         } catch (error) {
             return fail(500);
         }
-        throw redirect (301, `/verify/${verifyId}`);
+        throw redirect(301, `/verify/${verifyId}`);
     }
 };
