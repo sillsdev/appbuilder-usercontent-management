@@ -6,7 +6,7 @@
     import type { PageData } from './$types';
 
     export let data: PageData;
-    export let form;
+    export let form: HTMLFormElement;
 </script>
 
 <div>
@@ -21,7 +21,7 @@
     </main>
     <fieldset>
         <legend>Verify Email</legend>
-        <form method="POST" class="container">
+        <form bind:this={form} method="POST" class="container">
             <div class="input">
                 <label for="">Email Address:</label>
                 <input name="to" type="email" value="" />

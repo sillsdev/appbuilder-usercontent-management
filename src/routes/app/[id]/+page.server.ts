@@ -4,7 +4,7 @@ import type { PageServerLoad, RequestEvent } from './$types';
 import transporter from '$lib/mailer';
 import { EMAIL_FROM } from '$env/static/private';
 import type { Options } from 'nodemailer/lib/mailer';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 
 // Function to generate a six-digit confirmation code
 function generateConfirmationCode() {
@@ -27,6 +27,7 @@ export const actions = {
         if (app === null) {
             return fail(404);
         }
+        let verifyId = '';
         try {
             const formData = await request.formData();
             const email = formData.get('to');
@@ -35,7 +36,7 @@ export const actions = {
                 const confirmationCode = generateConfirmationCode();
 
                 // Create a UserManagementRequest object
-                /*const userManagementRequest = */ await prisma.userManagementRequest.create({
+                const userManagementRequest = await prisma.userManagementRequest.create({
                     data: {
                         email: email,
                         confirmationCode: confirmationCode,
@@ -84,14 +85,13 @@ export const actions = {
                     }
                 });
 
-                return {
-                    success: 'Email is sent'
-                };
+                verifyId = userManagementRequest.id;
             } else {
                 return fail(500);
             }
         } catch (error) {
             return fail(500);
         }
+        throw redirect(301, `/verify/${verifyId}`);
     }
 };
