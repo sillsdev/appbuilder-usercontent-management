@@ -33,7 +33,7 @@ type App struct {
 }
 
 func downloadManifest(productId string, result *Manifest) error {
-	manifestUrl := fmt.Sprintf("https://app.scriptoria.io/api/products/%s/files/published/play-listing-manifest", productId)
+	manifestUrl := fmt.Sprintf("https://dev.scriptoria.io/api/products/%s/files/published/play-listing-manifest", productId)
 
 	resp, err := http.Get(manifestUrl)
 	if err != nil {
