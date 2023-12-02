@@ -16,12 +16,12 @@ export const load = (async ({ params: { id } }) => {
 
 export const actions = {
     default: async ({ request, params: { id } }: RequestEvent) => {
-        console.log(id);
+        console.log(SCRIPTORIA_API_TOKEN);
         const userChange = await prisma.userManagementRequest.findUnique({
             where: { id: String(id) },
             include: { app: true }
         });
-        console.log(userChange);
+
         if (userChange === null) {
             return fail(404);
         }
