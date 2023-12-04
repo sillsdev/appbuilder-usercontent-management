@@ -1,4 +1,4 @@
-// src/routes/p/[id]/+page.server.ts
+// src/routes/request/[id]/+page.server.ts
 import prisma from '$lib/prisma';
 import type { UserManagementRequest, App } from '@prisma/client';
 import { SCRIPTORIA_API_TOKEN, SCRIPTORIA_API_URL } from '$env/static/private';
@@ -45,16 +45,15 @@ async function postUserChange(request: UserManagementRequest, app: App) {
 }
 
 export const load = (async ({ params: { id } }) => {
-    const app = await prisma.userManagementRequest.findUnique({
+    const request = await prisma.userManagementRequest.findUnique({
         where: { id: String(id) },
         include: { app: true }
     });
-    return { app };
+    return { request };
 }) satisfies PageServerLoad;
 
 export const actions = {
     default: async ({ request, params: { id } }: RequestEvent) => {
-        console.log(SCRIPTORIA_API_TOKEN);
         const userChange = await prisma.userManagementRequest.findUnique({
             where: { id: String(id) },
             include: { app: true }
