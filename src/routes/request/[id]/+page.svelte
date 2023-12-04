@@ -2,8 +2,6 @@
     import { onMount } from 'svelte';
 
     let group = 'user datamanagement';
-    const options = { 'delete-account': 'Delete Account', 'delete-user-data': 'Delete User Data' };
-
     onMount(() => {
         const inputs = document.querySelectorAll('input');
         const hasChecked = Array.from(inputs).some((input) => input.checked);
@@ -16,12 +14,26 @@
 <form method="POST" class="container">
     <div class="question">
         <legend>Options for User Data Management:</legend>
-        {#each Object.entries(options) as [name, label]}
-            <div class="option">
-                <input name="option" type="radio" id={name} bind:group value={name} />
-                <label for={name}>{label}</label>
-            </div>
-        {/each}
+        <div class="option">
+            <input
+                name="option"
+                type="radio"
+                id="delete-account"
+                bind:group
+                value="delete-account"
+            />
+            <label for="delete-account">Delete Account</label>
+        </div>
+        <div class="option">
+            <input
+                name="option"
+                type="radio"
+                id="delete-user-data"
+                bind:group
+                value="delete-user-data"
+            />
+            <label for="delete-user-data">Delete User Data</label>
+        </div>
         <button type="submit">Send</button>
     </div>
 </form>
