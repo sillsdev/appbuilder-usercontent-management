@@ -1,14 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-
-    let group = 'user datamanagement';
-    onMount(() => {
-        const inputs = document.querySelectorAll('input');
-        const hasChecked = Array.from(inputs).some((input) => input.checked);
-        if (!hasChecked) {
-            inputs[0].checked = true;
-        }
-    });
+    let group = 'delete-account';
 </script>
 
 <form method="POST" class="container">
