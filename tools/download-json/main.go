@@ -6,6 +6,9 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
+
+	"github.com/joho/godotenv"
 )
 
 type Manifest struct {
@@ -32,8 +35,8 @@ type App struct {
 	Listings      []Listing `json:"listings"`
 }
 
-func downloadManifest(productId string, result *Manifest) error {
-	manifestUrl := fmt.Sprintf("https://app.scriptoria.io/api/products/%s/files/published/play-listing-manifest", productId)
+func downloadManifest(scriptoriaUrl string, productId string, result *Manifest) error {
+	manifestUrl := fmt.Sprintf(scriptoriaUrl+"/api/products/%s/files/published/play-listing-manifest", productId)
 
 	resp, err := http.Get(manifestUrl)
 	if err != nil {
@@ -93,9 +96,24 @@ func saveAppToJson(app *App) error {
 }
 
 func main() {
+	dir, error := os.Getwd()
+	if error != nil {
+		panic(error)
+	}
+
+	envPath := filepath.Join(dir, "../../.env")
+	fmt.Println("Env: " + envPath)
+
+	error = godotenv.Load(envPath)
+	if error != nil {
+		panic(error)
+	}
+
+	scriptoriaUrl := os.Getenv("SCRIPTORIA_URL")
+
 	for _, productId := range os.Args[1:] {
 		manifest := &Manifest{}
-		error := downloadManifest(productId, manifest)
+		error := downloadManifest(scriptoriaUrl, productId, manifest)
 		if error != nil {
 			panic(error)
 		}
