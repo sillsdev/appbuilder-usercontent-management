@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    // import { API_TOKEN } from '$env/static/private';
     let group = 'user datamanagement';
     const options = { 'delete-account': 'Delete Account', 'delete-user-data': 'Delete User Data' };
 
