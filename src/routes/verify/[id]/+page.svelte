@@ -71,6 +71,7 @@
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         width: fit-content;
+        height: 250px;
         margin: auto;
     }
 
@@ -101,5 +102,7 @@
         color: white;
         border-radius: 4px;
         cursor: pointer;
+        position: absolute;
+        bottom: 450px;
     }
 </style>
