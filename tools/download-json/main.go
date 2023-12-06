@@ -109,7 +109,7 @@ func main() {
 		panic(error)
 	}
 
-	scriptoriaUrl := os.Getenv("SCRIPTORIA_URL")
+	scriptoriaUrl := os.Getenv("SCRIPTORIA_API_URL")
 
 	for _, productId := range os.Args[1:] {
 		manifest := &Manifest{}
