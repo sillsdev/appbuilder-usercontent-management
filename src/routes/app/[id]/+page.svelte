@@ -10,6 +10,7 @@
 </script>
 
 <div>
+    <img src={data.app?.appIcon} alt={data.app?.listings[0].title} />
     <h1>{data.app?.listings[0].title}</h1>
     <main>
         <p>

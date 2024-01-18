@@ -94,8 +94,7 @@
         justify-content: center;
     }
     button {
-        padding: 10px 20px;
-        margin-top: 20px;
+        padding: 0px 30px;
         border: none;
         background-color: #007bff;
         color: white;
