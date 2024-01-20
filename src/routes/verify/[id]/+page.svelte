@@ -4,32 +4,26 @@
     export let data: PageData;
 
     let code = ['', '', '', '', '', ''];
-    // Function to update the code
+
     function updateCode(index: number, event: Event) {
-        if (event.target === null) {
-            return;
-        }
-        const { value } = event.target as HTMLInputElement;
-        // Check if the last character is a digit
-        const lastChar = value.slice(-1);
+        const input = event.target as HTMLInputElement;
+        const lastChar = input.value.slice(-1);
         if (lastChar.match(/^\d$/)) {
-            code[index] = lastChar; // Set only if it's a digit
+            code[index] = lastChar;
             if (index < code.length - 1) {
-                document.getElementById(`input-${index + 1}`)?.focus(); // move to next input
+                document.getElementById(`input-${index + 1}`)?.focus();
             }
         } else {
-            // If not a digit, clear the input
             code[index] = '';
-            (event.target as HTMLInputElement).value = '';
+            input.value = '';
         }
     }
 
-    // Function to handle keydown events for backspace
     function handleBackspace(index: number, event: KeyboardEvent) {
         if (event.key === 'Backspace' && !code[index]) {
             if (index > 0) {
-                document.getElementById(`input-${index - 1}`)?.focus(); // move to previous input
-                code[index - 1] = ''; // clear the previous input
+                document.getElementById(`input-${index - 1}`)?.focus();
+                code[index - 1] = '';
             }
         }
     }
@@ -38,25 +32,34 @@
 </script>
 
 <div class="verification-container">
-    <h2>Verify your email address</h2>
+    <img
+        src="src/routes/verify/[id]/email-icon.png"
+        alt="Email Verification Icon"
+        class="email-icon"
+    />
+    <h1>Verify your email address</h1>
+    <br />
     <p>
-        We emailed you a six-digit code to {data.request?.email}. Enter the code below to confirm
-        your email address.
+        Thank You! We emailed you a six-digit code to {data.request?.email}. Enter the code below to
+        confirm your email address.
     </p>
+    <br />
 
     <form method="POST" class="code-form">
-        {#each code as value, index}
-            <input
-                class="code-input"
-                type="text"
-                id={`input-${index}`}
-                maxlength="1"
-                name={`input-${index}`}
-                {value}
-                on:input={(event) => updateCode(index, event)}
-                on:keydown={(event) => handleBackspace(index, event)}
-            />
-        {/each}
+        <div class="inputs-row">
+            {#each code as value, index}
+                <input
+                    class="code-input"
+                    type="text"
+                    id={`input-${index}`}
+                    maxlength="1"
+                    name={`input-${index}`}
+                    {value}
+                    on:input={(event) => updateCode(index, event)}
+                    on:keydown={(event) => handleBackspace(index, event)}
+                />
+            {/each}
+        </div>
         <button disabled={!isCodeComplete} type="submit">Verify</button>
     </form>
 </div>
@@ -74,10 +77,15 @@
         margin: auto;
     }
 
+    h1 {
+        color: #007bff; /* Sets the color to the same blue as the button */
+        font-size: 32px; /* Adjust the font size as needed */
+    }
+
     .code-input {
         width: 50px;
         height: 50px;
-        margin: 10px;
+        margin: 5px;
         text-align: center;
         font-size: 24px;
         border: 2px solid #d9d9d9;
@@ -89,10 +97,24 @@
         border-color: #007bff;
         outline: none;
     }
-    .code-form {
+
+    .email-icon {
+        width: 100px; /* Or any size you prefer */
+        height: auto; /* Keeps the aspect ratio */
+        margin-bottom: 20px; /* Adds some space below the icon */
+    }
+
+    .inputs-row {
         display: flex;
         justify-content: center;
     }
+
+    .code-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     button {
         padding: 10px 20px;
         margin-top: 20px;
@@ -101,5 +123,10 @@
         color: white;
         border-radius: 4px;
         cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
     }
 </style>
