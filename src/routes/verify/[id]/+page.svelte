@@ -40,8 +40,9 @@
     <h1>Verify your email address</h1>
     <br />
     <p>
-        Thank You! We emailed you a six-digit code to {data.request?.email}. Enter the code below to
-        confirm your email address.
+        Thank You! We emailed you a six-digit code to {data.request?.email}.
+        <br />
+        <span class="text-center block"> Enter the code below to confirm your email address. </span>
     </p>
     <br />
 
@@ -60,7 +61,7 @@
                 />
             {/each}
         </div>
-        <button disabled={!isCodeComplete} type="submit">Verify</button>
+        <button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
     </form>
 </div>
 
@@ -75,6 +76,7 @@
         border-radius: 8px;
         width: fit-content;
         margin: auto;
+        background-color: white;
     }
 
     h1 {
