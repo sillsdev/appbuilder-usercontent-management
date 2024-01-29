@@ -32,15 +32,13 @@
 </script>
 
 <div class="verification-container">
-    <img
-        src="src/routes/verify/[id]/email-icon.png"
-        alt="Email Verification Icon"
-        class="email-icon"
-    />
+    <img src="/email-icon.png" alt="Email Verification Icon" class="email-icon" />
     <h1>Verify your email address</h1>
     <br />
     <p>
-        Thank You! We emailed you a six-digit code to {data.request?.email}.
+        Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
+            >{data.request?.email}.</span
+        >
         <br />
         <span class="text-center block"> Enter the code below to confirm your email address. </span>
     </p>
@@ -61,9 +59,9 @@
                 />
             {/each}
         </div>
-        <button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
     </form>
 </div>
+<button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
 
 <style>
     .verification-container {
@@ -80,8 +78,8 @@
     }
 
     h1 {
-        color: #007bff; /* Sets the color to the same blue as the button */
-        font-size: 32px; /* Adjust the font size as needed */
+        color: #007bff;
+        font-size: 32px;
     }
 
     .code-input {
@@ -101,9 +99,9 @@
     }
 
     .email-icon {
-        width: 100px; /* Or any size you prefer */
-        height: auto; /* Keeps the aspect ratio */
-        margin-bottom: 20px; /* Adds some space below the icon */
+        width: 100px;
+        height: auto;
+        margin-bottom: 20px;
     }
 
     .inputs-row {
@@ -126,6 +124,9 @@
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     button:hover {
