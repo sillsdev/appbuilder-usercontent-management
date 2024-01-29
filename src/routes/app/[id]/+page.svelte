@@ -4,6 +4,7 @@
 <script lang="ts">
     //	import Post from '$lib/components/Post.svelte';
     import type { PageData } from './$types';
+    import AppMetadata from './AppMetadata.svelte';
 
     export let data: PageData;
     export let form: HTMLFormElement;
@@ -11,16 +12,7 @@
 
 <div class="flex justify-center p-4 bg-gray-100">
     <div class="text-center">
-        <img
-            src={data.app?.appIcon}
-            alt={data.app?.listings[0].title}
-            class="w-32 h-32 object-cover rounded-md shadow-md mx-auto mb-4"
-        />
-        <h1 class="text-2xl font-bold">{data.app?.listings[0].title}</h1>
-        <main class="prose">
-            <p>{data.app?.listings[0].shortDescription}</p>
-            <p>{data.app?.listings[0].fullDescription}</p>
-        </main>
+        <AppMetadata {data} />
         <fieldset class="border p-4 space-y-4">
             <legend class="text-lg font-semibold">Verify Email</legend>
             <form bind:this={form} method="POST" class="space-y-4">
