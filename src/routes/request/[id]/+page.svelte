@@ -1,10 +1,16 @@
 <script lang="ts">
     let group = 'delete-account';
+
+    import type { PageData } from './$types';
+    import AppMetadata from '../../../components/AppMetadata.svelte';
+
+    export let data: PageData;
+    export let form: HTMLFormElement;
 </script>
 
 <div class="center">
     <div class="flex flex-col w-full lg:flex-row">
-        <div class="card w-96 bg-neutral text-primary-content">
+        <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
                 <form method="POST" class="container">
                     <div class="question">
@@ -17,7 +23,7 @@
                                 bind:group
                                 value="delete-account"
                             />
-                            <label for="delete-account">My Account</label>
+                            <label for="delete-account">My User Data</label>
                         </div>
                         <div class="option">
                             <input
@@ -27,9 +33,8 @@
                                 bind:group
                                 value="delete-user-data"
                             />
-                            <label for="delete-user-data">My User Data</label>
+                            <label for="delete-user-data">My Account</label>
                         </div>
-                        <button class="btn">Send</button>
                     </div>
                 </form>
             </div>
@@ -37,7 +42,18 @@
     </div>
 </div>
 
+<button class="btn send">Send</button>
+
 <style>
+    .send {
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+    }
     .center {
         position: absolute;
         top: 50%;
