@@ -4,7 +4,7 @@
 <script lang="ts">
     //	import Post from '$lib/components/Post.svelte';
     import type { PageData } from './$types';
-    import AppMetadata from './AppMetadata.svelte';
+    import AppMetadata from '../../../components/AppMetadata.svelte';
 
     export let data: PageData;
     export let form: HTMLFormElement;
