@@ -1,6 +1,6 @@
 <!-- AppDetails.svelte -->
 <script lang="ts">
-    import type { PageData } from '../routes/app/$types';
+    import type { PageData } from '../routes/app/[id]/$types';
     export let data: PageData;
 </script>
 
