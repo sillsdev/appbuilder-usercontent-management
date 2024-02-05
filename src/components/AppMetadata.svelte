@@ -9,10 +9,6 @@
     let isExpanded = false;
     const dispatch = createEventDispatcher();
 
-    onMount(() => {
-        // You can initialize any necessary logic here
-    });
-
     const toggleDescription = () => {
         isExpanded = !isExpanded;
         dispatch('toggle', { isExpanded });
