@@ -40,7 +40,7 @@
             >{data.request?.email}.</span
         >
         <br />
-        <span class="text-center block"> Enter the code below to confirm your email address. </span>
+        <span class="text-center block">Enter the code below to confirm your email address. </span>
     </p>
     <br />
 
@@ -89,7 +89,7 @@
         text-align: center;
         font-size: 24px;
         border: 2px solid #d9d9d9;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: border-color 0.3s;
     }
 
@@ -120,7 +120,7 @@
         border: none;
         background-color: #007bff;
         color: white;
-        border-radius: 4px;
+        border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s;
         display: block;
@@ -130,5 +130,24 @@
 
     button:hover {
         background-color: #0056b3;
+    }
+
+    h1,
+    p {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+        .verification-container {
+            width: 90%;
+            margin-top: 25%;
+            box-sizing: border-box;
+        }
+
+        .code-input {
+            margin: 2px;
+        }
     }
 </style>
