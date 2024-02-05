@@ -58,13 +58,27 @@
                     on:keydown={(event) => handleBackspace(index, event)}
                 />
             {/each}
+            <button class="btn btn-primary verify" disabled={!isCodeComplete} type="submit">
+                Verify
+            </button>
         </div>
     </form>
 </div>
-<button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
 
 <style>
+    .verify {
+        position: absolute;
+        top: 110%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+    }
     .verification-container {
+        position: absolute;
+        top: 10%;
+        left: 30%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -73,7 +87,6 @@
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         width: fit-content;
-        height: 250px;
         margin: auto;
         background-color: white;
     }
@@ -117,7 +130,8 @@
     }
 
     button {
-        padding: 0px 30px;
+        padding: 10px 20px;
+        margin-top: 20px;
         border: none;
         background-color: #007bff;
         color: white;
