@@ -1,6 +1,5 @@
 <!-- AppDetails.svelte -->
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
 
     import type { PageData } from '../routes/app/[id]/$types';
