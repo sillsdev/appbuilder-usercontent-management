@@ -59,9 +59,11 @@
                 />
             {/each}
         </div>
+        <div class="button-container">
+            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit">Verify</button>
+        </div>
     </form>
 </div>
-<button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
 
 <style>
     .verification-container {
@@ -109,6 +111,10 @@
         justify-content: center;
     }
 
+    .button-container {
+        margin-top: 20px;
+    }
+
     .code-form {
         display: flex;
         flex-direction: column;
@@ -116,7 +122,7 @@
     }
 
     button {
-        padding: 0px 30px;
+        padding: 10px 30px;
         border: none;
         background-color: #007bff;
         color: white;
