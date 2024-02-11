@@ -2,10 +2,18 @@
     let group = 'delete-account';
 
     import type { PageData } from './$types';
+    import AppMetadata from '$lib/components/AppMetadata.svelte';
 
     export let data: PageData;
     export let form: HTMLFormElement;
 </script>
+
+<AppMetadata
+    appIcon={data.app?.appIcon}
+    title={data.app?.listings[0].title}
+    shortDescription={data.app?.listings[0].shortDescription}
+    fullDescription={data.app?.listings[0].fullDescription}
+/>
 
 <div class="center">
     <div class="flex flex-col w-full lg:flex-row">
