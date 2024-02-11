@@ -12,6 +12,7 @@
 
 <div class="flex justify-center p-4 bg-gray-100">
     <div class="text-center">
+        <h1>USER MANAGEMENT</h1>
         <AppMetadata
             appIcon={data.app?.appIcon}
             title={data.app?.listings[0].title}
