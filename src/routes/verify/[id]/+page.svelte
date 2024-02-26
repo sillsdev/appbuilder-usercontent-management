@@ -7,6 +7,19 @@
 
     function updateCode(index: number, event: Event) {
         const input = event.target as HTMLInputElement;
+        // Allows for pasting of the six-digit code
+        if (event.type === 'paste') {
+            const pasteData = (event as ClipboardEvent).clipboardData?.getData('text') || '';
+            if (pasteData.length === code.length && pasteData.match(/^\d+$/)) {
+                pasteData.split('').forEach((char, i) => {
+                    code[i] = char;
+                    document.getElementById(`input-${i}`)?.setAttribute('value', char);
+                });
+                document.getElementById(`input-${code.length - 1}`)?.focus();
+                return;
+            }
+        }
+
         const lastChar = input.value.slice(-1);
         if (lastChar.match(/^\d$/)) {
             code[index] = lastChar;
@@ -37,8 +50,9 @@
     <br />
     <p>
         Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
-            >{data.request?.email}.</span
-        >
+            >{data.request?.email}.
+        </span><br />Please allow a few minutes for it to arrive.
+        <br />If you don't see it, check your spam or junk folder.
         <br />
         <span class="text-center block">Enter the code below to confirm your email address. </span>
     </p>
@@ -56,6 +70,7 @@
                     {value}
                     on:input={(event) => updateCode(index, event)}
                     on:keydown={(event) => handleBackspace(index, event)}
+                    on:paste={(event) => updateCode(index, event)}
                 />
             {/each}
         </div>
