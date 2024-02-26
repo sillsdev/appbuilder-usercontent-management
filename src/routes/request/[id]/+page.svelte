@@ -8,14 +8,13 @@
     export let form: HTMLFormElement;
 </script>
 
-<AppMetadata
-    appIcon={data.app?.appIcon}
-    title={data.app?.listings[0].title}
-    shortDescription={data.app?.listings[0].shortDescription}
-    fullDescription={data.app?.listings[0].fullDescription}
-/>
-
 <div class="center">
+    <AppMetadata
+        appIcon={data.app?.appIcon}
+        title={data.app?.listings[0].title}
+        shortDescription={data.app?.listings[0].shortDescription}
+        fullDescription={data.app?.listings[0].fullDescription}
+    />
     <div class="flex flex-col w-full lg:flex-row">
         <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
@@ -47,14 +46,13 @@
             </div>
         </div>
     </div>
+    <button class="btn send">Send</button>
 </div>
-
-<button class="btn send">Send</button>
 
 <style>
     .send {
         position: absolute;
-        top: 75%;
+        top: 105%;
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 10px 20px;
@@ -67,6 +65,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 10px;
+        text-align: center;
     }
     div.question {
         display: flex;
