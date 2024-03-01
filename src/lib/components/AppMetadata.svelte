@@ -29,8 +29,10 @@
         <div class={isExpanded ? 'block' : 'hidden'}>
             <p>{fullDescription}</p>
         </div>
+
         <button on:click={toggleDescription} class="text-blue-500 cursor-pointer">
-            {isExpanded ? 'Collapse' : 'Expand'} Full App Description
+            {isExpanded ? '▲' : '▼'}
+            Full App Description
         </button>
     </main>
 </div>

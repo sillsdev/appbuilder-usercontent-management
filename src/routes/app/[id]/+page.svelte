@@ -12,7 +12,7 @@
 
 <div class="flex justify-center p-4 bg-gray-100">
     <div class="text-center">
-        <h1 class=" font-bold text-5xl mb-5">USER DATA MANAGEMENT</h1>
+        <h1 class="uppercase font-bold text-5xl mb-5">User Data Management</h1>
         <AppMetadata
             appIcon={data.app?.appIcon}
             title={data.app?.listings[0].title}
