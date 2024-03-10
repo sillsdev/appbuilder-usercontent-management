@@ -18,35 +18,35 @@
     <div class="flex flex-col w-full lg:flex-row">
         <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
-                <form method="POST" class="container">
-                    <div class="question">
-                        <legend>I want to delete</legend>
-                        <div class="option">
-                            <input
-                                name="option"
-                                type="radio"
-                                id="delete-account"
-                                bind:group
-                                value="delete-account"
-                            />
-                            <label for="delete-account">My User Data</label>
-                        </div>
-                        <div class="option">
-                            <input
-                                name="option"
-                                type="radio"
-                                id="delete-user-data"
-                                bind:group
-                                value="delete-user-data"
-                            />
-                            <label for="delete-user-data">My Account</label>
-                        </div>
+                <div class="question">
+                    <legend>I want to delete</legend>
+                    <div class="option">
+                        <input
+                            name="option"
+                            type="radio"
+                            id="delete-account"
+                            bind:group
+                            value="delete-account"
+                        />
+                        <label for="delete-account">My User Data</label>
                     </div>
-                </form>
+                    <div class="option">
+                        <input
+                            name="option"
+                            type="radio"
+                            id="delete-user-data"
+                            bind:group
+                            value="delete-user-data"
+                        />
+                        <label for="delete-user-data">My Account</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <button class="btn send">Send</button>
+    <form method="POST" class="container">
+        <button class="btn send">Send</button>
+    </form>
 </div>
 
 <style>
@@ -67,6 +67,7 @@
         padding: 10px;
         text-align: center;
     }
+
     div.question {
         display: flex;
         flex-direction: column;
