@@ -82,5 +82,6 @@ export const actions = {
         } catch (error) {
             return fail(500);
         }
+        throw redirect(301, '/confirmation');
     }
 };
