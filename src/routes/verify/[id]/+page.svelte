@@ -51,9 +51,8 @@
     <p>
         Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
             >{data.request?.email}.
-        </span><br />Please allow a few minutes for it to arrive.
-        <br />If you don't see it, check your spam or junk folder.
-        <br />
+        </span>Please allow a few minutes for it to arrive. If you don't see it, check your spam or
+        junk folder.
         <span class="text-center block">Enter the code below to confirm your email address. </span>
     </p>
     <br />
