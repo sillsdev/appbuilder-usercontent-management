@@ -4,6 +4,7 @@ import type { UserManagementRequest, App } from '@prisma/client';
 import { SCRIPTORIA_API_TOKEN, SCRIPTORIA_API_URL } from '$env/static/private';
 import type { PageServerLoad, RequestEvent } from './$types';
 import { fail } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 async function postUserChange(request: UserManagementRequest, app: App) {
     const payload = {
@@ -49,7 +50,13 @@ export const load = (async ({ params: { id } }) => {
         where: { id: String(id) },
         include: { app: true }
     });
-    return { request };
+
+    const app = await prisma.app.findUnique({
+        where: { id: request?.appId },
+        include: { listings: true }
+    });
+    console.log('loading app object: ', app);
+    return { request, app };
 }) satisfies PageServerLoad;
 
 export const actions = {
