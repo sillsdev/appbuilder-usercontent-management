@@ -1,3 +1,9 @@
+<script lang="ts">
+    import type { PageData } from './$types';
+
+    export let data: PageData;
+</script>
+
 <div role="alert" class="alert alert-success">
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +19,9 @@
     >
     <h1>
         Thank you for requesting deletion of your data/account! A team member has been notified, and
-        your data/account will be deleted soon.
+        your data/account will be deleted soon. <span class="font-bold text-black"
+            >{data.params.email}</span
+        >
     </h1>
 </div>
 

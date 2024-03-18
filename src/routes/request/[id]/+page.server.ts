@@ -69,6 +69,8 @@ export const actions = {
         if (userChange === null) {
             return fail(404);
         }
+        let confirmationId = '';
+
         try {
             const formData = await request.formData();
             const option = String(formData.get('option'));
@@ -79,9 +81,11 @@ export const actions = {
             });
 
             await postUserChange(updatedUserChange, userChange.app);
+
+            confirmationId = updatedUserChange.id;
         } catch (error) {
             return fail(500);
         }
-        throw redirect(301, '/confirmation');
+        throw redirect(301, `/confirmation/${confirmationId}`);
     }
 };
