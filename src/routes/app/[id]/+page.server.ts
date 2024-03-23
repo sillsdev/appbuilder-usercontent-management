@@ -65,9 +65,13 @@ export const actions = {
                         <p style="font-size: 24px;">Hello ${email},</p>
                 
                         <p style="line-height: 2;">
-                            Thanks for typing in your email! 
-                            <br /> Your verification code is: ${confirmationCode}
+                            Thanks for typing in your email!
                         </p>
+                        <div style="background-color: #e8f4fa; padding: 20px; margin: 20px 0;">
+                            <span style="font-size: 32px; color: #0077b6;">Your verification code is:</span>
+                            <br>
+                            <span style="font-size: 48px; color: #0077b6; font-weight: bold;">${confirmationCode}</span>
+                        </div>
                 
                         <p>
                             This verification code will expire in 1 hour. -From Team SIL
