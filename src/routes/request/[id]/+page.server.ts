@@ -80,6 +80,8 @@ export const actions = {
                 data: { changeRequest: option }
             });
 
+            console.log('OPTION IS', option);
+
             await postUserChange(updatedUserChange, userChange.app);
 
             confirmationId = updatedUserChange.id;

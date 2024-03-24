@@ -18,10 +18,13 @@
         /></svg
     >
     <h1>
-        Thank you for requesting deletion of your data/account! A team member has been notified, and
-        your data/account will be deleted soon. <span class="font-bold text-black"
-            >{data.params.email}</span
-        >
+        Thank you for your request! A team member has been notified, and your data/account will be
+        deleted soon.
+        <br />
+        Email: <span class="font-bold text-black">{data.request?.email}. </span>
+        <br />
+        Selected to Delete:
+        <span class="font-bold text-black">{data.request?.changeRequest}. </span>
     </h1>
 </div>
 
