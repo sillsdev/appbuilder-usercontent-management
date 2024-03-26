@@ -48,5 +48,8 @@
     },
     "volta": {
         "node": "20.9.0"
+    },
+    "dependencies": {
+        "svelte-i18n": "^4.0.0"
     }
 }

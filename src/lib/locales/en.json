@@ -1,0 +1,11 @@
+{
+    "lang": "English",
+    "page": {
+        "initial": {
+            "title": "User Data Management",
+            "verify": "Verify Email",
+            "emailAddress": "Email Address",
+            "send": "Send"
+        }
+    }
+}
