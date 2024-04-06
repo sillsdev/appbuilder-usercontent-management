@@ -1,0 +1,27 @@
+{
+    "lang": "Español",
+    "page": {
+        "initial": {
+            "title": "Gestión de datos de usuario",
+            "dropdown": "Descripción completa de la aplicación",
+            "verify": "Verificar correo electrónico",
+            "explanation": "Valoramos mucho su privacidad y estamos comprometidos a garantizar la seguridad de sus datos. Como parte de nuestro compromiso con la transparencia y el control del usuario, le brindamos la posibilidad de administrar sus datos almacenados en nuestros servidores. Como medida de seguridad, comenzaremos verificando la dirección de correo electrónico asociada a su cuenta.",
+            "emailAddress": "Dirección de correo electrónico",
+            "send": "Enviar"
+        },
+        "verify": {
+            "verifyEmail": "Verifique su dirección de correo electrónico",
+            "thankYou": "¡Gracias! Le enviamos por correo electrónico un código de seis dígitos a ",
+            "errorHandle": "Espere unos minutos hasta que llegue. Si no lo ves, revisa tu carpeta de spam o basura.",
+            "enterCode": "Ingrese el código a continuación para confirmar su dirección de correo electrónico.",
+            "verifyCode": "Verificar"
+
+        },
+        "request": {
+            "option": "Quiero borrar",
+            "userData": "Mis datos de usuario",
+            "account": "Mi cuenta",
+            "send": "Enviar"
+        }
+    }
+}

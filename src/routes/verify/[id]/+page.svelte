@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
-
+    import { _ } from 'svelte-i18n';
     export let data: PageData;
 
     let code = ['', '', '', '', '', ''];
@@ -46,14 +46,14 @@
 
 <div class="verification-container">
     <img src="/email-icon.png" alt="Email Verification Icon" class="email-icon" />
-    <h1>Verify your email address</h1>
+    <h1>{$_('page.verify.verifyEmail')}</h1>
     <br />
     <p>
-        Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
-            >{data.request?.email}.
-        </span>Please allow a few minutes for it to arrive. If you don't see it, check your spam or
-        junk folder.
-        <span class="text-center block">Enter the code below to confirm your email address. </span>
+        {$_('page.verify.thankYou')}
+        <span class="font-bold text-black">{data.request?.email}. </span>{$_(
+            'page.verify.errorHandle'
+        )}
+        <span class="text-center block">{$_('page.verify.enterCode')}</span>
     </p>
     <br />
 
@@ -74,7 +74,9 @@
             {/each}
         </div>
         <div class="button-container">
-            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit">Verify</button>
+            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit"
+                >{$_('page.verify.verifyCode')}</button
+            >
         </div>
     </form>
 </div>

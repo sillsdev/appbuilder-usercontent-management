@@ -3,8 +3,24 @@
     "page": {
         "initial": {
             "title": "User Data Management",
+            "dropdown": "Full App Description",
             "verify": "Verify Email",
+            "explanation": "We highly value your privacy and are committed to ensuring the security of your data. As part of our commitment to transparency and user control, we provide you with the ability to manage your data stored on our servers. As a security measure, we will begin by verifying the email address associated with your account.",
             "emailAddress": "Email Address",
+            "send": "Send"
+        },
+        "verify": {
+            "verifyEmail": "Verify your email address",
+            "thankYou": "Thank You! We emailed you a six-digit code to ",
+            "errorHandle": "Please allow a few minutes for it to arrive. If you don't see it, check your spam or junk folder.",
+            "enterCode": "Enter the code below to confirm your email address.",
+            "verifyCode": "Verify"
+
+        },
+        "request": {
+            "option": "I want to delete",
+            "userData": "My User Data",
+            "account": "My Account",
             "send": "Send"
         }
     }
