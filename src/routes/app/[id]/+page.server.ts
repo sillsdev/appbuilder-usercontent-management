@@ -5,6 +5,37 @@ import transporter from '$lib/mailer';
 import { EMAIL_FROM } from '$env/static/private';
 import type { Options } from 'nodemailer/lib/mailer';
 import { fail, redirect } from '@sveltejs/kit';
+import { TURNSTILE_SECRET_KEY } from '$env/static/private';
+
+interface TokenValidateResponse {
+    'error-codes': string[];
+    success: boolean;
+    action: string;
+    cdata: string;
+}
+
+async function validateToken(token: string, secret: string) {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            response: token,
+            secret: secret
+        })
+    });
+
+    const data: TokenValidateResponse = await response.json();
+
+    return {
+        // Return the status
+        success: data.success,
+
+        // Return the first error if it exists
+        error: data['error-codes']?.length ? data['error-codes'][0] : null
+    };
+}
 
 // Function to generate a six-digit confirmation code
 function generateConfirmationCode() {
@@ -24,6 +55,20 @@ export const actions = {
         const app = await prisma.app.findUnique({
             where: { appId: String(params.id) }
         });
+        const data = await request.formData();
+
+        const token = data.get('cf-turnstile-response') as string;
+        if (!token) {
+            return fail(500);
+        }
+        const { success, error } = await validateToken(token, TURNSTILE_SECRET_KEY);
+
+        if (!success) {
+            return {
+                error: error || 'Invalid CAPTCHA'
+            };
+        }
+
         if (app === null) {
             return fail(404);
         }

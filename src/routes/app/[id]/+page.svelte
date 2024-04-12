@@ -4,7 +4,9 @@
 <script lang="ts">
     //	import Post from '$lib/components/Post.svelte';
     import type { PageData } from './$types';
+    import { Turnstile } from 'svelte-turnstile';
     import AppMetadata from '$lib/components/AppMetadata.svelte';
+    import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
 
     export let data: PageData;
     export let form: HTMLFormElement;
@@ -38,6 +40,7 @@
                         class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                     />
                 </div>
+                <Turnstile siteKey={PUBLIC_TURNSTILE_SITE_KEY} />
                 <button
                     type="submit"
                     class="bg-blue-500 text-white p-3 rounded-md w-48 hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 text-lg"
