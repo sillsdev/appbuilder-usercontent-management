@@ -48,6 +48,6 @@
         "seed": "ts-node prisma/seed.js"
     },
     "volta": {
-        "node": "20.9.0"
+        "node": "18.18.2"
     }
 }
