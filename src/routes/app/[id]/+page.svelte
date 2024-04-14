@@ -9,18 +9,34 @@
 
     export let data: PageData;
     export let form: HTMLFormElement;
+    let foundIndex = 0;
 </script>
 
 <div class="flex justify-center p-4 bg-gray-100">
     <div class="text-center">
         <h1 class="uppercase font-bold text-5xl mb-5">{$_('page.initial.title')}</h1>
-        <AppMetadata
+        <div>
+            {#if data.app?.listings}
+                {#each data.app.listings as listing, index}
+                    {#if listing.lang.substring(0, 2) === $_('langCode')}
+                        <AppMetadata
+                            appIcon={data.app?.appIcon}
+                            title={data.app?.listings[index].title}
+                            shortDescription={data.app?.listings[index].shortDescription}
+                            fullDescription={data.app?.listings[index].fullDescription}
+                            expandDescription={$_('page.initial.dropdown')}
+                        />
+                    {/if}
+                {/each}
+            {/if}
+        </div>
+        <!-- <AppMetadata
             appIcon={data.app?.appIcon}
-            title={data.app?.listings[0].title}
-            shortDescription={data.app?.listings[0].shortDescription}
-            fullDescription={data.app?.listings[0].fullDescription}
+            title={data.app?.listings[foundIndex].title}
+            shortDescription={data.app?.listings[foundIndex].shortDescription}
+            fullDescription={data.app?.listings[foundIndex].fullDescription}
             expandDescription={$_('page.initial.dropdown')}
-        />
+        /> -->
         <fieldset class="border p-4 space-y-4">
             <legend class="text-lg font-semibold">{$_('page.initial.verify')}</legend>
             <p>

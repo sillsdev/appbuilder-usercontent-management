@@ -4,6 +4,7 @@ let fallback = 'en';
 
 register('en', () => import('./locales/en.json'));
 register('es', () => import('./locales/es.json'));
+register('fr', () => import('./locales/fr.json'));
 
 init({
     initialLocale: getLocaleFromNavigator(),
