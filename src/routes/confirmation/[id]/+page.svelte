@@ -18,7 +18,7 @@
         /></svg
     >
     <h1>
-        Thank you for your request! A team member has been notified, and your data/account will be
+        Thank you for your request! A team member has been notified, and your selection will be
         deleted soon.
         <br />
         Email: <span class="font-bold text-black">{data.request?.email}. </span>
