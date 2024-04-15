@@ -66,6 +66,8 @@ export const actions = {
             include: { app: true }
         });
 
+        console.log('user change: ', userChange);
+
         if (userChange === null) {
             return fail(404);
         }
@@ -73,14 +75,17 @@ export const actions = {
 
         try {
             const formData = await request.formData();
-            const option = String(formData.get('option'));
+            const option = String(formData.get('delete'));
+
+            console.log([...formData]);
+
+            console.log('FORM DATA: ', JSON.stringify(formData));
+            console.log('OPTION IS', option);
 
             const updatedUserChange = await prisma.userManagementRequest.update({
                 where: { id: userChange.id },
                 data: { changeRequest: option }
             });
-
-            console.log('OPTION IS', option);
 
             await postUserChange(updatedUserChange, userChange.app);
 
