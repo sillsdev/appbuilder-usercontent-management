@@ -24,7 +24,11 @@
         Email: <span class="font-bold text-black">{data.request?.email}. </span>
         <br />
         Selected to Delete:
-        <span class="font-bold text-black">{data.request?.changeRequest}. </span>
+        {#if data.request?.changeRequest == 'delete-user-data'}
+            <span class="font-bold text-black">User Data.</span>
+        {:else}
+            <span class="font-bold text-black">Account.</span>
+        {/if}
     </h1>
 </div>
 
