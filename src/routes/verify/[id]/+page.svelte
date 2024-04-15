@@ -7,6 +7,19 @@
 
     function updateCode(index: number, event: Event) {
         const input = event.target as HTMLInputElement;
+        // Allows for pasting of the six-digit code
+        if (event.type === 'paste') {
+            const pasteData = (event as ClipboardEvent).clipboardData?.getData('text') || '';
+            if (pasteData.length === code.length && pasteData.match(/^\d+$/)) {
+                pasteData.split('').forEach((char, i) => {
+                    code[i] = char;
+                    document.getElementById(`input-${i}`)?.setAttribute('value', char);
+                });
+                document.getElementById(`input-${code.length - 1}`)?.focus();
+                return;
+            }
+        }
+
         const lastChar = input.value.slice(-1);
         if (lastChar.match(/^\d$/)) {
             code[index] = lastChar;
@@ -37,9 +50,9 @@
     <br />
     <p>
         Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
-            >{data.request?.email}.</span
-        >
-        <br />
+            >{data.request?.email}.
+        </span>Please allow a few minutes for it to arrive. If you don't see it, check your spam or
+        junk folder.
         <span class="text-center block">Enter the code below to confirm your email address. </span>
     </p>
     <br />
@@ -56,12 +69,15 @@
                     {value}
                     on:input={(event) => updateCode(index, event)}
                     on:keydown={(event) => handleBackspace(index, event)}
+                    on:paste={(event) => updateCode(index, event)}
                 />
             {/each}
         </div>
+        <div class="button-container">
+            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit">Verify</button>
+        </div>
     </form>
 </div>
-<button class="btn btn-primary" disabled={!isCodeComplete} type="submit"> Verify </button>
 
 <style>
     .verification-container {
@@ -109,6 +125,10 @@
         justify-content: center;
     }
 
+    .button-container {
+        margin-top: 20px;
+    }
+
     .code-form {
         display: flex;
         flex-direction: column;
@@ -116,7 +136,7 @@
     }
 
     button {
-        padding: 0px 30px;
+        padding: 10px 30px;
         border: none;
         background-color: #007bff;
         color: white;

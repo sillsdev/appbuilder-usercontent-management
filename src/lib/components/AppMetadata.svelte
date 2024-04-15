@@ -16,7 +16,7 @@
     };
 </script>
 
-<div>
+<div class="mb-5">
     <img
         src={appIcon}
         alt={title}
@@ -24,12 +24,15 @@
     />
     <h1 class="text-2xl font-bold">{title}</h1>
     <main class="max-w-screen-md prose sm:prose-lg md:prose-xl lg:prose-2xl xl:prose-3xl">
-        <p class="text-3xl">{shortDescription}</p>
+        <p class="text-xl font-bold">{shortDescription}</p>
+        <br />
         <div class={isExpanded ? 'block' : 'hidden'}>
             <p>{fullDescription}</p>
         </div>
+
         <button on:click={toggleDescription} class="text-blue-500 cursor-pointer">
-            {isExpanded ? 'Collapse' : 'Expand'} Description
+            {isExpanded ? '▲' : '▼'}
+            Full App Description
         </button>
     </main>
 </div>
