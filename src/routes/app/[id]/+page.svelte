@@ -3,13 +3,13 @@
 <!-- 1. -->
 <script lang="ts">
     //	import Post from '$lib/components/Post.svelte';
-    import { _ } from 'svelte-i18n';
+    import { _, locale } from 'svelte-i18n';
     import type { PageData } from './$types';
     import AppMetadata from '$lib/components/AppMetadata.svelte';
 
     export let data: PageData;
     export let form: HTMLFormElement;
-    let foundIndex = 0;
+    $: currentLocale = $locale || '';
 </script>
 
 <div class="flex justify-center p-4 bg-gray-100">
@@ -18,7 +18,7 @@
         <div>
             {#if data.app?.listings}
                 {#each data.app.listings as listing, index}
-                    {#if listing.lang.substring(0, 2) === $_('langCode')}
+                    {#if listing.lang.startsWith(currentLocale)}
                         <AppMetadata
                             appIcon={data.app?.appIcon}
                             title={data.app?.listings[index].title}
@@ -30,13 +30,7 @@
                 {/each}
             {/if}
         </div>
-        <!-- <AppMetadata
-            appIcon={data.app?.appIcon}
-            title={data.app?.listings[foundIndex].title}
-            shortDescription={data.app?.listings[foundIndex].shortDescription}
-            fullDescription={data.app?.listings[foundIndex].fullDescription}
-            expandDescription={$_('page.initial.dropdown')}
-        /> -->
+
         <fieldset class="border p-4 space-y-4">
             <legend class="text-lg font-semibold">{$_('page.initial.verify')}</legend>
             <p>

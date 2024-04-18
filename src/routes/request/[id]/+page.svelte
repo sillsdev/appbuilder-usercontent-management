@@ -10,13 +10,29 @@
 </script>
 
 <div class="center">
-    <AppMetadata
-        appIcon={data.app?.appIcon}
-        title={data.app?.listings[0].title}
-        shortDescription={data.app?.listings[0].shortDescription}
-        fullDescription={data.app?.listings[0].fullDescription}
-        expandDescription={$_('page.initial.dropdown')}
-    />
+    <div>
+        {#if data.app?.listings}
+            {#each data.app.listings as listing, index}
+                {#if listing.lang.substring(0, 2) === $_('langCode')}
+                    <AppMetadata
+                        appIcon={data.app?.appIcon}
+                        title={data.app?.listings[index].title}
+                        shortDescription={data.app?.listings[index].shortDescription}
+                        fullDescription={data.app?.listings[index].fullDescription}
+                        expandDescription={$_('page.initial.dropdown')}
+                    />
+                {:else if data.app.listings.length === index + 1}
+                    <AppMetadata
+                        appIcon={data.app?.appIcon}
+                        title={data.app?.listings[0].title}
+                        shortDescription={data.app?.listings[0].shortDescription}
+                        fullDescription={data.app?.listings[0].fullDescription}
+                        expandDescription={$_('page.initial.dropdown')}
+                    />
+                {/if}
+            {/each}
+        {/if}
+    </div>
     <div class="flex flex-col w-full lg:flex-row">
         <div class="card w-96 bg-base-100 shadow-xl">
             <div class="card-body">
