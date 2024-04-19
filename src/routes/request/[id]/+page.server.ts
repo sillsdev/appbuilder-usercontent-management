@@ -4,7 +4,6 @@ import type { UserManagementRequest, App } from '@prisma/client';
 import { SCRIPTORIA_API_TOKEN, SCRIPTORIA_API_URL } from '$env/static/private';
 import type { PageServerLoad, RequestEvent } from './$types';
 import { fail } from '@sveltejs/kit';
-import { redirect } from '@sveltejs/kit';
 
 async function postUserChange(request: UserManagementRequest, app: App) {
     const payload = {
