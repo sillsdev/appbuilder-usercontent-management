@@ -3,30 +3,22 @@
 
     import type { PageData } from './$types';
     import AppMetadata from '$lib/components/AppMetadata.svelte';
-    import { _ } from 'svelte-i18n';
+    import { _, locale } from 'svelte-i18n';
 
     export let data: PageData;
-    export let form: HTMLFormElement;
+    $: currentLocale = $locale || '';
 </script>
 
 <div class="center">
     <div>
         {#if data.app?.listings}
             {#each data.app.listings as listing, index}
-                {#if listing.lang.substring(0, 2) === $_('langCode')}
+                {#if listing.lang.startsWith(currentLocale)}
                     <AppMetadata
                         appIcon={data.app?.appIcon}
                         title={data.app?.listings[index].title}
                         shortDescription={data.app?.listings[index].shortDescription}
                         fullDescription={data.app?.listings[index].fullDescription}
-                        expandDescription={$_('page.initial.dropdown')}
-                    />
-                {:else if data.app.listings.length === index + 1}
-                    <AppMetadata
-                        appIcon={data.app?.appIcon}
-                        title={data.app?.listings[0].title}
-                        shortDescription={data.app?.listings[0].shortDescription}
-                        fullDescription={data.app?.listings[0].fullDescription}
                         expandDescription={$_('page.initial.dropdown')}
                     />
                 {/if}
