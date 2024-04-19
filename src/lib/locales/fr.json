@@ -15,7 +15,6 @@
             "errorHandle": "Veuillez patienter quelques minutes pour qu'il arrive. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
             "enterCode": "Entrez le code ci-dessous pour confirmer votre adresse e-mail.",
             "verifyCode": "Vérifier"
-
         },
         "request": {
             "option": "je veux supprimer",
