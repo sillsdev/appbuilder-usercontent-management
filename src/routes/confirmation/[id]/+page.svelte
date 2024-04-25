@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
+    import { _ } from 'svelte-i18n';
 
     export let data: PageData;
 </script>
@@ -18,12 +19,12 @@
         /></svg
     >
     <h1>
-        Thank you for your request! A team member has been notified, and your selection will be
-        deleted soon.
+        {$_('page.confirmation.confirmationMessage')}
         <br />
-        Email: <span class="font-bold text-black">{data.request?.email}. </span>
+        {$_('page.confirmation.email')}
+        <span class="font-bold text-black">{data.request?.email}. </span>
         <br />
-        Selected to Delete:
+        {$_('page.confirmation.selected')}
         {#if data.request?.changeRequest == 'delete-user-data'}
             <span class="font-bold text-black">User Data.</span>
         {:else}

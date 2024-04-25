@@ -3,18 +3,28 @@
 
     import type { PageData } from './$types';
     import AppMetadata from '$lib/components/AppMetadata.svelte';
+    import { _, locale } from 'svelte-i18n';
 
     export let data: PageData;
-    export let form: HTMLFormElement;
+    $: currentLocale = $locale || '';
 </script>
 
 <div class="center">
-    <AppMetadata
-        appIcon={data.app?.appIcon}
-        title={data.app?.listings[0].title}
-        shortDescription={data.app?.listings[0].shortDescription}
-        fullDescription={data.app?.listings[0].fullDescription}
-    />
+    <div>
+        {#if data.app?.listings}
+            {#each data.app.listings as listing, index}
+                {#if listing.lang.startsWith(currentLocale)}
+                    <AppMetadata
+                        appIcon={data.app?.appIcon}
+                        title={data.app?.listings[index].title}
+                        shortDescription={data.app?.listings[index].shortDescription}
+                        fullDescription={data.app?.listings[index].fullDescription}
+                        expandDescription={$_('page.initial.dropdown')}
+                    />
+                {/if}
+            {/each}
+        {/if}
+    </div>
     <form method="POST" class="container">
         <div class="flex flex-col w-full lg:flex-row">
             <div class="card w-96 bg-base-100 shadow-xl">
@@ -46,6 +56,38 @@
             </div>
         </div>
         <button class="btn send">Send</button>
+        <div class="flex flex-col w-full lg:flex-row">
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="question">
+                        <legend>{$_('page.request.option')}</legend>
+                        <div class="option">
+                            <input
+                                name="option"
+                                type="radio"
+                                id="delete-account"
+                                bind:group
+                                value="delete-account"
+                            />
+                            <label for="delete-account">{$_('page.request.userData')}</label>
+                        </div>
+                        <div class="option">
+                            <input
+                                name="option"
+                                type="radio"
+                                id="delete-user-data"
+                                bind:group
+                                value="delete-user-data"
+                            />
+                            <label for="delete-user-data">{$_('page.request.account')}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" class="container">
+            <button class="btn send">{$_('page.request.send')}</button>
+        </form>
     </form>
 </div>
 
