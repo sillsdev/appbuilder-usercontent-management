@@ -6,6 +6,7 @@
     export let title: string | undefined;
     export let shortDescription: string | undefined;
     export let fullDescription: string | undefined;
+    export let expandDescription: string | undefined;
 
     let isExpanded = false;
     const dispatch = createEventDispatcher();
@@ -32,7 +33,7 @@
 
         <button on:click={toggleDescription} class="text-blue-500 cursor-pointer">
             {isExpanded ? '▲' : '▼'}
-            Full App Description
+            {expandDescription}
         </button>
     </main>
 </div>

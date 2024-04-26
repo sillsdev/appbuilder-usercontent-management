@@ -1,43 +1,89 @@
 <script lang="ts">
     let group = 'delete-account';
+
+    import type { PageData } from './$types';
+    import AppMetadata from '$lib/components/AppMetadata.svelte';
+    import { _, locale } from 'svelte-i18n';
+
+    export let data: PageData;
+    $: currentLocale = $locale || '';
 </script>
 
-<form method="POST" class="container">
-    <div class="question">
-        <legend>Options for User Data Management:</legend>
-        <div class="option">
-            <input
-                name="option"
-                type="radio"
-                id="delete-account"
-                bind:group
-                value="delete-account"
-            />
-            <label for="delete-account">Delete Account</label>
-        </div>
-        <div class="option">
-            <input
-                name="option"
-                type="radio"
-                id="delete-user-data"
-                bind:group
-                value="delete-user-data"
-            />
-            <label for="delete-user-data">Delete User Data</label>
-        </div>
-        <button type="submit">Send</button>
+<div class="center">
+    <div>
+        {#if data.app?.listings}
+            {#each data.app.listings as listing, index}
+                {#if listing.lang.startsWith(currentLocale)}
+                    <AppMetadata
+                        appIcon={data.app?.appIcon}
+                        title={data.app?.listings[index].title}
+                        shortDescription={data.app?.listings[index].shortDescription}
+                        fullDescription={data.app?.listings[index].fullDescription}
+                        expandDescription={$_('page.initial.dropdown')}
+                    />
+                {/if}
+            {/each}
+        {/if}
     </div>
-</form>
+    <div class="flex flex-col w-full lg:flex-row">
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <div class="question">
+                    <legend>{$_('page.request.option')}</legend>
+                    <div class="option">
+                        <input
+                            name="option"
+                            type="radio"
+                            id="delete-account"
+                            bind:group
+                            value="delete-account"
+                        />
+                        <label for="delete-account">{$_('page.request.userData')}</label>
+                    </div>
+                    <div class="option">
+                        <input
+                            name="option"
+                            type="radio"
+                            id="delete-user-data"
+                            bind:group
+                            value="delete-user-data"
+                        />
+                        <label for="delete-user-data">{$_('page.request.account')}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="POST" class="container">
+        <button class="btn send">{$_('page.request.send')}</button>
+    </form>
+</div>
 
 <style>
+    .send {
+        position: absolute;
+        top: 105%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+    }
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        text-align: center;
+    }
+
     div.question {
         display: flex;
         flex-direction: column;
         max-width: 300px;
         margin: auto;
         padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
         text-align: left;
     }
 
