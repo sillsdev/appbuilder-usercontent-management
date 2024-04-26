@@ -1,6 +1,9 @@
 <script lang="ts">
     import type { PageData } from './$types';
+
     import { PUBLIC_CONTACT_EMAIL } from '$env/static/public';
+
+    import { _ } from 'svelte-i18n';
 
     export let data: PageData;
 
@@ -8,6 +11,19 @@
 
     function updateCode(index: number, event: Event) {
         const input = event.target as HTMLInputElement;
+        // Allows for pasting of the six-digit code
+        if (event.type === 'paste') {
+            const pasteData = (event as ClipboardEvent).clipboardData?.getData('text') || '';
+            if (pasteData.length === code.length && pasteData.match(/^\d+$/)) {
+                pasteData.split('').forEach((char, i) => {
+                    code[i] = char;
+                    document.getElementById(`input-${i}`)?.setAttribute('value', char);
+                });
+                document.getElementById(`input-${code.length - 1}`)?.focus();
+                return;
+            }
+        }
+
         const lastChar = input.value.slice(-1);
         if (lastChar.match(/^\d$/)) {
             code[index] = lastChar;
@@ -34,14 +50,14 @@
 
 <div class="verification-container">
     <img src="/email-icon.png" alt="Email Verification Icon" class="email-icon" />
-    <h1>Verify your email address</h1>
+    <h1>{$_('page.verify.verifyEmail')}</h1>
     <br />
     <p>
-        Thank You! We emailed you a six-digit code to <span class="font-bold text-black"
-            >{data.request?.email}.</span
-        >
-        <br />
-        <span class="text-center block">Enter the code below to confirm your email address. </span>
+        {$_('page.verify.thankYou')}
+        <span class="font-bold text-black">{data.request?.email}. </span>{$_(
+            'page.verify.errorHandle'
+        )}
+        <span class="text-center block">{$_('page.verify.enterCode')}</span>
     </p>
     <br />
 
@@ -57,11 +73,14 @@
                     {value}
                     on:input={(event) => updateCode(index, event)}
                     on:keydown={(event) => handleBackspace(index, event)}
+                    on:paste={(event) => updateCode(index, event)}
                 />
             {/each}
         </div>
         <div class="button-container">
-            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit">Verify</button>
+            <button class="btn btn-primary" disabled={!isCodeComplete} type="submit"
+                >{$_('page.verify.verifyCode')}</button
+            >
         </div>
     </form>
 </div>

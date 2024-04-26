@@ -1,0 +1,26 @@
+{
+    "lang": "Français",
+    "page": {
+        "initial": {
+            "title": "Gestion des données utilisateur",
+            "dropdown": "Description complète de l'application",
+            "verify": "Vérifier les courriels",
+            "explanation": "Nous accordons une grande importance à votre vie privée et nous engageons à assurer la sécurité de vos données. Dans le cadre de notre engagement en faveur de la transparence et du contrôle des utilisateurs, nous vous offrons la possibilité de gérer vos données stockées sur nos serveurs. Par mesure de sécurité, nous commencerons par vérifier l'adresse e-mail associée à votre compte.",
+            "emailAddress": "Adresse e-mail",
+            "send": "Envoyer"
+        },
+        "verify": {
+            "verifyEmail": "Vérifiez votre adresse e-mail",
+            "thankYou": "Merci! Nous vous avons envoyé par e-mail un code à six chiffres pour ",
+            "errorHandle": "Veuillez patienter quelques minutes pour qu'il arrive. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
+            "enterCode": "Entrez le code ci-dessous pour confirmer votre adresse e-mail.",
+            "verifyCode": "Vérifier"
+        },
+        "request": {
+            "option": "je veux supprimer",
+            "userData": "Mes données utilisateur",
+            "account": "Mon compte",
+            "send": "Envoyer"
+        }
+    }
+}

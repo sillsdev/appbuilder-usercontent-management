@@ -49,7 +49,13 @@ export const load = (async ({ params: { id } }) => {
         where: { id: String(id) },
         include: { app: true }
     });
-    return { request };
+
+    const app = await prisma.app.findUnique({
+        where: { id: request?.appId },
+        include: { listings: true }
+    });
+    console.log('loading app object: ', app);
+    return { request, app };
 }) satisfies PageServerLoad;
 
 export const actions = {
