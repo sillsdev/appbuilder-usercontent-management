@@ -5,39 +5,19 @@
     export let data: PageData;
 </script>
 
-<div role="alert" class="alert alert-success">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="stroke-current shrink-0 h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-        /></svg
-    >
-    <h1>
-        {$_('page.confirmation.confirmationMessage')}
-        <br />
-        {$_('page.confirmation.email')}
-        <span class="font-bold text-black">{data.request?.email}. </span>
-        <br />
-        {$_('page.confirmation.selected')}
-        {#if data.request?.changeRequest == 'delete-user-data'}
-            <span class="font-bold text-black">User Data.</span>
-        {:else}
-            <span class="font-bold text-black">Account.</span>
-        {/if}
-    </h1>
+<div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="card w-3/4 bg-green-600 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title">{$_('page.confirmation.confirmationMessage')}</h2>
+            {$_('page.confirmation.email')}
+            <span class="font-bold text-black">{data.request?.email}. </span>
+            <br />
+            {$_('page.confirmation.selected')}
+            {#if data.request?.changeRequest == 'delete-user-data'}
+                <span class="font-bold text-black">User Data.</span>
+            {:else}
+                <span class="font-bold text-black">Account.</span>
+            {/if}
+        </div>
+    </div>
 </div>
-
-<style>
-    div {
-        padding-left: 160px;
-        padding-right: 160px;
-        position: absolute;
-        top: 50%;
-    }
-</style>

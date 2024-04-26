@@ -9,7 +9,7 @@
     $: currentLocale = $locale || '';
 </script>
 
-<div class="center">
+<div class="min-h-screen flex flex-col items-center justify-center">
     <div>
         {#if data.app?.listings}
             {#each data.app.listings as listing, index}
@@ -26,8 +26,8 @@
         {/if}
     </div>
     <form method="POST" class="container">
-        <div class="flex flex-col w-full lg:flex-row">
-            <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="flex flex-col w-full items-center">
+            <div class="card w-7/8 md:w-1/2 bg-base-100 shadow-xl">
                 <div class="card-body">
                     <div class="question">
                         <legend>{$_('page.request.option')}</legend>
@@ -54,23 +54,14 @@
                     </div>
                 </div>
             </div>
+            <div class="m-5">
+                <button class="btn bg-dodger-blue text-white">{$_('page.request.send')}</button>
+            </div>
         </div>
-        <form method="POST" class="container">
-            <button class="btn send">{$_('page.request.send')}</button>
-        </form>
     </form>
 </div>
 
 <style>
-    .send {
-        position: absolute;
-        top: 105%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-    }
     .center {
         position: absolute;
         top: 50%;
