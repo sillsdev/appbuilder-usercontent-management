@@ -6,7 +6,5 @@ export const load = (async ({ params: { id } }) => {
         where: { id: String(id) },
         include: { app: true }
     });
-    console.log('FOUND');
-    console.log(request?.id);
     return { request };
 }) satisfies PageServerLoad;
