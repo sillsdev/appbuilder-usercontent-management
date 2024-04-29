@@ -9,7 +9,7 @@
     $: currentLocale = $locale || '';
 </script>
 
-<div class="center">
+<div class="min-h-screen flex flex-col items-center justify-center">
     <div>
         {#if data.app?.listings}
             {#each data.app.listings as listing, index}
@@ -25,59 +25,43 @@
             {/each}
         {/if}
     </div>
-    <div class="flex flex-col w-full lg:flex-row">
-        <div class="card w-96 bg-base-100 shadow-xl">
-            <div class="card-body">
-                <div class="question">
-                    <legend>{$_('page.request.option')}</legend>
-                    <div class="option">
-                        <input
-                            name="option"
-                            type="radio"
-                            id="delete-account"
-                            bind:group
-                            value="delete-account"
-                        />
-                        <label for="delete-account">{$_('page.request.userData')}</label>
-                    </div>
-                    <div class="option">
-                        <input
-                            name="option"
-                            type="radio"
-                            id="delete-user-data"
-                            bind:group
-                            value="delete-user-data"
-                        />
-                        <label for="delete-user-data">{$_('page.request.account')}</label>
+    <form method="POST" class="container">
+        <div class="flex flex-col w-full items-center">
+            <div class="card w-7/8 md:w-1/2 bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="question">
+                        <legend>{$_('page.request.option')}</legend>
+                        <div class="option">
+                            <input
+                                name="option"
+                                type="radio"
+                                id="delete-account"
+                                bind:group
+                                value="delete-account"
+                            />
+                            <label for="delete-account">{$_('page.request.userData')}</label>
+                        </div>
+                        <div class="option">
+                            <input
+                                name="option"
+                                type="radio"
+                                id="delete-user-data"
+                                bind:group
+                                value="delete-user-data"
+                            />
+                            <label for="delete-user-data">{$_('page.request.account')}</label>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="m-5">
+                <button class="btn bg-dodger-blue text-white">{$_('page.request.send')}</button>
+            </div>
         </div>
-    </div>
-    <form method="POST" class="container">
-        <button class="btn send">{$_('page.request.send')}</button>
     </form>
 </div>
 
 <style>
-    .send {
-        position: absolute;
-        top: 105%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-    }
-    .center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 10px;
-        text-align: center;
-    }
-
     div.question {
         display: flex;
         flex-direction: column;

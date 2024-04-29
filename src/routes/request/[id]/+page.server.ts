@@ -4,6 +4,7 @@ import type { UserManagementRequest, App } from '@prisma/client';
 import { SCRIPTORIA_API_TOKEN, SCRIPTORIA_API_URL } from '$env/static/private';
 import type { PageServerLoad, RequestEvent } from './$types';
 import { fail } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 async function postUserChange(request: UserManagementRequest, app: App) {
     const payload = {
@@ -54,7 +55,7 @@ export const load = (async ({ params: { id } }) => {
         where: { id: request?.appId },
         include: { listings: true }
     });
-    console.log('loading app object: ', app);
+
     return { request, app };
 }) satisfies PageServerLoad;
 
@@ -68,9 +69,11 @@ export const actions = {
         if (userChange === null) {
             return fail(404);
         }
+        let confirmationId = '';
+
         try {
             const formData = await request.formData();
-            const option = String(formData.get('option'));
+            const option = String(formData.get('delete'));
 
             const updatedUserChange = await prisma.userManagementRequest.update({
                 where: { id: userChange.id },
@@ -78,8 +81,11 @@ export const actions = {
             });
 
             await postUserChange(updatedUserChange, userChange.app);
+
+            confirmationId = updatedUserChange.id;
         } catch (error) {
             return fail(500);
         }
+        throw redirect(301, `/confirmation/${confirmationId}`);
     }
 };

@@ -21,6 +21,11 @@
             "userData": "Mis datos de usuario",
             "account": "Mi cuenta",
             "send": "Enviar"
+        },
+        "confirmation": {
+            "confirmationMessage": "¡Gracias por tu solicitud! Se notificó a un miembro del equipo y su selección se eliminará pronto.",
+            "email": "Correo electrónico: ",
+            "selected": "Seleccionado para eliminar: "
         }
     }
 }

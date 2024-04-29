@@ -17,10 +17,15 @@
             "verifyCode": "Vérifier"
         },
         "request": {
-            "option": "je veux supprimer",
+            "option": "Je veux supprimer",
             "userData": "Mes données utilisateur",
             "account": "Mon compte",
             "send": "Envoyer"
+        },
+        "confirmation": {
+            "confirmationMessage": "Merci pour votre requête! Un membre de l'équipe a été averti et votre sélection sera bientôt supprimée.",
+            "email": "E-mail: ",
+            "selected": "Sélectionné pour supprimer: "
         }
     }
 }

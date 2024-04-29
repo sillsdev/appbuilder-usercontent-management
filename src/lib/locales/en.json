@@ -21,6 +21,11 @@
             "userData": "My User Data",
             "account": "My Account",
             "send": "Send"
+        },
+        "confirmation": {
+            "confirmationMessage": "Thank you for your request! A team member has been notified, and your selection will be deleted soon.",
+            "email": "Email: ",
+            "selected": "Selected to Delete: "
         }
     }
 }
