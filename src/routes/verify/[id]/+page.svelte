@@ -1,6 +1,10 @@
 <script lang="ts">
     import type { PageData } from './$types';
+
+    import { PUBLIC_CONTACT_EMAIL } from '$env/static/public';
+
     import { _ } from 'svelte-i18n';
+
     export let data: PageData;
 
     let code = ['', '', '', '', '', ''];
@@ -79,6 +83,24 @@
             >
         </div>
     </form>
+</div>
+
+<div class="mt-4 flex flex-col items-center justify-center">
+    <div role="alert" class="alert w-3/4">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-info shrink-0 w-6 h-6"
+            ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            /></svg
+        >
+        <span>{$_('page.verify.assistance', { values: { email: PUBLIC_CONTACT_EMAIL } })}</span>
+    </div>
 </div>
 
 <style>
