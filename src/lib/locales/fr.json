@@ -14,7 +14,9 @@
             "thankYou": "Merci! Nous vous avons envoyé par e-mail un code à six chiffres pour ",
             "errorHandle": "Veuillez patienter quelques minutes pour qu'il arrive. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
             "enterCode": "Entrez le code ci-dessous pour confirmer votre adresse e-mail.",
-            "verifyCode": "Vérifier"
+            "verifyCode": "Vérifier",
+            "spamFolder": "Vous n'avez pas reçu d'e-mail ? Vérifiez votre dossier spam ou contactez ",
+            "assistance": " à l'aide."
         },
         "request": {
             "option": "je veux supprimer",

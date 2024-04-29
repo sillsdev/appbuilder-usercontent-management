@@ -100,9 +100,9 @@
             /></svg
         >
         <span
-            >Didn't get an email? Check your spam folder or contact <span
-                class="font-bold text-black">{PUBLIC_CONTACT_EMAIL}</span
-            > for assistance.</span
+            >{$_('page.verify.spamFolder')}<span class="font-bold text-black"
+                >{PUBLIC_CONTACT_EMAIL}</span
+            >{$_('page.verify.assistance')}</span
         >
     </div>
 </div>

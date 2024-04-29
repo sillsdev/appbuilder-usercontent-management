@@ -14,7 +14,9 @@
             "thankYou": "¡Gracias! Le enviamos por correo electrónico un código de seis dígitos a ",
             "errorHandle": "Espere unos minutos hasta que llegue. Si no lo ves, revisa tu carpeta de spam o basura.",
             "enterCode": "Ingrese el código a continuación para confirmar su dirección de correo electrónico.",
-            "verifyCode": "Verificar"
+            "verifyCode": "Verificar",
+            "spamFolder": "¿No recibiste un correo electrónico? Revisa tu carpeta de spam o contacto ",
+            "assistance": " para asistencia."
         },
         "request": {
             "option": "Quiero borrar",
