@@ -15,8 +15,7 @@
             "errorHandle": "Espere unos minutos hasta que llegue. Si no lo ves, revisa tu carpeta de spam o basura.",
             "enterCode": "Ingrese el código a continuación para confirmar su dirección de correo electrónico.",
             "verifyCode": "Verificar",
-            "spamFolder": "¿No recibiste un correo electrónico? Revisa tu carpeta de spam o contacto ",
-            "assistance": " para asistencia."
+            "assistance": "¿No recibiste un correo electrónico? Revise su carpeta de spam o comuníquese con {email} para obtener ayuda."
         },
         "request": {
             "option": "Quiero borrar",

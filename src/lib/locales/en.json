@@ -15,8 +15,7 @@
             "errorHandle": "Please allow a few minutes for it to arrive. If you don't see it, check your spam or junk folder.",
             "enterCode": "Enter the code below to confirm your email address.",
             "verifyCode": "Verify",
-            "spamFolder": "Didn't get an email? Check your spam folder or contact ",
-            "assistance": " for assistance."
+            "assistance": "Didn't get an email? Check your spam folder or contact {email} for assistance."
         },
         "request": {
             "option": "I want to delete",
