@@ -55,7 +55,7 @@ export const load = (async ({ params: { id } }) => {
         where: { id: request?.appId },
         include: { listings: true }
     });
-    console.log('loading app object: ', app);
+
     return { request, app };
 }) satisfies PageServerLoad;
 
@@ -74,9 +74,6 @@ export const actions = {
         try {
             const formData = await request.formData();
             const option = String(formData.get('delete'));
-
-            console.log('FORM DATA: ', JSON.stringify(formData));
-            console.log('OPTION IS', option);
 
             const updatedUserChange = await prisma.userManagementRequest.update({
                 where: { id: userChange.id },
