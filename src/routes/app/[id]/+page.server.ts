@@ -60,17 +60,15 @@ export const actions = {
                 <body style="font-family: Arial, sans-serif; text-align: center;">
                 
                     <div style="max-width: 600px; margin: auto; padding: 20px;">
-                        <h1 style="font-size: 48px; color: #0077b6;">Verification</h1>
+                        <h1 style="font-size: 48px; color: #0077b6;">${confirmationCode}</h1>
                 
                         <p style="font-size: 24px;">Hello ${email},</p>
                 
                         <p style="line-height: 2;">
-                            Thanks for typing in your email! 
-                            <br /> Your verification code is: ${confirmationCode}
-                        </p>
-                
+                            Thanks for typing in your email! This verification code will expire in 1 hour. 
+                        </p>                
                         <p>
-                            This verification code will expire in 1 hour. -From Team SIL
+                        -From Team SIL
                         </p>
                     </div>
                 
